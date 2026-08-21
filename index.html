@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>      
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
@@ -363,6 +363,7 @@
     }
 
     .calendar-white {
+      position: relative;
       overflow: hidden;
 
       background: white;
@@ -372,6 +373,62 @@
       box-shadow:
         inset 0 0 0 1px rgba(208,220,233,.8);
     }
+    .floating-week{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  z-index:80;
+
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:8px;
+
+  padding:10px 28px 12px;
+
+  background:rgba(255,255,255,.97);
+
+  border-bottom:1px solid rgba(217,170,69,.45);
+
+  box-shadow:0 8px 18px rgba(8,29,54,.12);
+
+  opacity:0;
+  transform:translateY(-8px);
+  pointer-events:none;
+
+  transition:.2s ease;
+}
+
+.floating-week.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.floating-week div{
+  text-align:center;
+  color:#0b2b4f;
+  font-size:13px;
+  font-weight:800;
+
+  padding:9px 4px 8px;
+
+  border-radius:11px;
+  border:1px solid #f7e2a1;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff5cf 0%,
+      #e3b957 40%,
+      #f4d987 65%,
+      #b67b1d 100%
+    );
+
+  box-shadow:
+    inset 0 2px 2px rgba(255,255,255,.9),
+    inset 0 -3px 6px rgba(115,72,8,.18),
+    0 4px 0 #936215;
+}
 
     /*
       Ховаємо повторну верхню шапку
@@ -577,7 +634,15 @@
     <section class="calendar-shell">
 
       <div class="calendar-white">
-
+<div class="floating-week">
+  <div>Пн</div>
+  <div>Вт</div>
+  <div>Ср</div>
+  <div>Чт</div>
+  <div>Пт</div>
+  <div>Сб</div>
+  <div>Нд</div>
+</div>
         <div class="calendar-viewport">
 
           <iframe
@@ -606,6 +671,19 @@
     </div>
 
   </main>
+<script>
+  const calendarViewport = document.querySelector('.calendar-viewport');
+  const floatingWeek = document.querySelector('.floating-week');
 
+  if (calendarViewport && floatingWeek) {
+    calendarViewport.addEventListener('scroll', function () {
+      if (calendarViewport.scrollTop > 70) {
+        floatingWeek.classList.add('show');
+      } else {
+        floatingWeek.classList.remove('show');
+      }
+    });
+  }
+</script>
 </body>
 </html>
