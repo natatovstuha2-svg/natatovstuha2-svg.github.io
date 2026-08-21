@@ -12,130 +12,206 @@
     }
 
     :root {
-      --navy: #14365e;
-      --navy-soft: #58718d;
-      --gold: #c79a3b;
-      --gold-light: #ead8aa;
-      --blue-light: #edf6ff;
-      --line: #dfe9f4;
+      --navy: #081d36;
+      --navy2: #0d2b4f;
+      --navy3: #123a66;
+
+      --gold: #d9aa45;
+      --gold-light: #f3d88c;
+      --gold-dark: #9b6b18;
+
       --white: #ffffff;
+      --soft-white: #f7f9fc;
+
+      --crop: 270px;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
     }
 
     body {
-      margin: 0;
-      min-height: 100vh;
       font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-      color: var(--navy);
+
+      color: white;
+
       background:
-        radial-gradient(circle at 8% 4%, rgba(210,232,255,.75), transparent 27%),
-        radial-gradient(circle at 93% 6%, rgba(255,239,197,.55), transparent 24%),
-        linear-gradient(180deg, #fbfdff 0%, #f3f8fd 48%, #f7faff 100%);
+        radial-gradient(
+          circle at 10% 0%,
+          rgba(54, 112, 168, .32),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 92% 8%,
+          rgba(215, 169, 69, .15),
+          transparent 24%
+        ),
+        linear-gradient(
+          145deg,
+          #06182e 0%,
+          #0a2341 42%,
+          #071b34 100%
+        );
+
+      background-attachment: fixed;
     }
 
     .page {
       width: 100%;
-      padding: 22px;
+      padding: 24px;
     }
 
-    /* ===== PREMIUM HEADER ===== */
+    /* ===============================
+       PREMIUM HEADER
+    ================================ */
 
     .hero {
       position: relative;
-      overflow: hidden;
-      max-width: 1560px;
-      margin: 0 auto 18px;
-      min-height: 190px;
+
+      max-width: 1580px;
+      margin: 0 auto 22px;
+
+      min-height: 205px;
 
       display: grid;
-      grid-template-columns: 150px 1fr auto;
+      grid-template-columns: 165px 1fr 230px;
       align-items: center;
-      gap: 28px;
+      gap: 30px;
 
-      padding: 24px 34px;
+      padding: 25px 38px;
+
+      overflow: hidden;
 
       background:
+        radial-gradient(
+          circle at 82% 18%,
+          rgba(79, 132, 187, .18),
+          transparent 35%
+        ),
         linear-gradient(
-          115deg,
-          rgba(255,255,255,.98) 0%,
-          rgba(248,252,255,.98) 58%,
-          rgba(255,251,241,.98) 100%
+          125deg,
+          rgba(11, 39, 70, .98),
+          rgba(8, 28, 52, .98)
         );
 
-      border: 1px solid rgba(197,216,235,.85);
-      border-radius: 30px;
+      border: 1px solid rgba(231, 192, 101, .55);
+      border-radius: 32px;
 
       box-shadow:
-        0 20px 55px rgba(37,76,116,.10),
-        inset 0 1px 0 rgba(255,255,255,.9);
+        0 28px 70px rgba(0, 0, 0, .32),
+        inset 0 1px 0 rgba(255, 255, 255, .08);
     }
 
     .hero::before {
       content: "";
+
       position: absolute;
-      left: 0;
+      left: 5%;
       top: 0;
-      width: 100%;
-      height: 4px;
+
+      width: 90%;
+      height: 3px;
+
       background:
         linear-gradient(
           90deg,
-          transparent 0%,
-          #d6b25b 22%,
-          #f0dfaa 50%,
-          #c79531 77%,
-          transparent 100%
+          transparent,
+          #bd8628,
+          #f3d98d,
+          #bd8628,
+          transparent
         );
+
+      box-shadow:
+        0 0 16px rgba(240, 204, 112, .42);
     }
 
     .hero::after {
       content: "";
+
       position: absolute;
-      width: 330px;
-      height: 330px;
-      right: -110px;
-      top: -160px;
+
+      width: 420px;
+      height: 420px;
+
+      right: -150px;
+      top: -220px;
+
       border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        rgba(229,195,113,.14),
-        transparent 70%
-      );
-      pointer-events: none;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(241, 206, 125, .13),
+          transparent 68%
+        );
     }
+
+    /* ===============================
+       LOGO
+    ================================ */
 
     .logo-wrap {
       position: relative;
-      z-index: 1;
+      z-index: 2;
+
+      width: 150px;
+      height: 150px;
+
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 40% 25%,
+          rgba(255,255,255,.13),
+          rgba(255,255,255,.02)
+        );
+
+      border: 1px solid rgba(239, 205, 125, .28);
+
+      box-shadow:
+        inset 0 0 25px rgba(255,255,255,.04),
+        0 14px 30px rgba(0,0,0,.20);
     }
 
     .logo-wrap img {
-      width: 145px;
-      height: 145px;
+      width: 142px;
+      height: 142px;
       object-fit: contain;
-      display: block;
 
       filter:
-        drop-shadow(0 12px 18px rgba(21,52,91,.15));
+        drop-shadow(0 15px 17px rgba(0,0,0,.34))
+        drop-shadow(0 0 10px rgba(230,193,105,.12));
     }
+
+    /* ===============================
+       TITLES
+    ================================ */
 
     .main-info {
       position: relative;
-      z-index: 1;
-      min-width: 0;
+      z-index: 2;
     }
 
     .school-name {
       margin: 0 0 9px;
 
+      color: var(--gold-light);
+
       font-size: 13px;
       font-weight: 800;
-      letter-spacing: 2px;
+
+      letter-spacing: 2.2px;
       text-transform: uppercase;
 
-      color: var(--gold);
+      text-shadow:
+        0 2px 7px rgba(0,0,0,.25);
     }
 
     h1 {
@@ -143,166 +219,254 @@
 
       max-width: 900px;
 
-      font-size: clamp(32px, 3.6vw, 52px);
-      line-height: 1.06;
+      color: white;
+
+      font-size: clamp(35px, 3.8vw, 55px);
+      line-height: 1.04;
+
+      font-weight: 800;
       letter-spacing: -1.5px;
 
-      color: var(--navy);
-      font-weight: 800;
+      text-shadow:
+        0 6px 18px rgba(0,0,0,.22);
     }
 
     h1 span {
       display: block;
-      margin-top: 4px;
 
-      font-size: .72em;
-      font-weight: 650;
-      letter-spacing: -.5px;
+      margin-top: 5px;
 
-      color: #355b82;
+      color: #c8ddf1;
+
+      font-size: .68em;
+      font-weight: 600;
+      letter-spacing: -.4px;
     }
 
     .author {
-      margin-top: 15px;
+      margin-top: 17px;
 
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
+
+      color: #aebfd2;
 
       font-size: 16px;
-      color: #687f98;
     }
 
     .author strong {
-      color: var(--navy);
+      color: white;
       font-weight: 750;
     }
 
     .author-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--gold);
+      width: 6px;
+      height: 6px;
+
       display: inline-block;
+
+      background: var(--gold);
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 8px rgba(222,174,72,.65);
     }
+
+    /* ===============================
+       3D GOLD YEAR CARD
+    ================================ */
 
     .year-card {
       position: relative;
-      z-index: 1;
+      z-index: 2;
 
-      min-width: 210px;
-      padding: 20px 24px;
+      min-width: 220px;
+
+      padding: 22px 25px;
 
       text-align: center;
+
+      color: #102d4d;
 
       background:
         linear-gradient(
           145deg,
-          rgba(239,247,255,.95),
-          rgba(255,255,255,.96)
+          #fff5cf 0%,
+          #e3b957 38%,
+          #f5da8c 60%,
+          #bc8528 100%
         );
 
-      border: 1px solid #d9e6f2;
+      border:
+        1px solid rgba(255, 236, 179, .95);
+
       border-radius: 22px;
 
       box-shadow:
-        0 10px 30px rgba(38,75,112,.07);
+        inset 0 2px 2px rgba(255,255,255,.85),
+        inset 0 -4px 9px rgba(127,80,12,.18),
+        0 10px 0 #8c611c,
+        0 20px 30px rgba(0,0,0,.25);
     }
 
     .year-card strong {
       display: block;
 
-      font-size: 24px;
-      color: var(--navy);
-      letter-spacing: -.5px;
+      font-size: 25px;
+      font-weight: 850;
+
+      text-shadow:
+        0 1px 0 rgba(255,255,255,.65);
     }
 
     .year-card span {
       display: block;
+
       margin-top: 5px;
 
+      color: #5a461d;
+
       font-size: 13px;
-      color: #7c8fa3;
+      font-weight: 650;
     }
 
-    /* ===== CALENDAR ===== */
+    /* ===============================
+       WHITE CALENDAR
+    ================================ */
 
     .calendar-shell {
-      max-width: 1560px;
+      position: relative;
+
+      max-width: 1580px;
       margin: 0 auto;
 
       padding: 8px;
 
-      background: rgba(255,255,255,.72);
+      background:
+        linear-gradient(
+          135deg,
+          #f7e2a5,
+          #b97c18,
+          #f5dc96,
+          #a56e16
+        );
 
-      border: 1px solid rgba(214,226,239,.9);
-      border-radius: 30px;
+      border-radius: 32px;
 
       box-shadow:
-        0 22px 60px rgba(40,78,116,.10);
-
-      backdrop-filter: blur(10px);
+        0 30px 80px rgba(0,0,0,.35),
+        0 0 0 1px rgba(255,220,137,.16);
     }
 
-    .calendar-inner {
+    .calendar-white {
       overflow: hidden;
 
       background: white;
-      border-radius: 23px;
+
+      border-radius: 25px;
+
+      box-shadow:
+        inset 0 0 0 1px rgba(208,220,233,.8);
+    }
+
+    /*
+      Ховаємо повторну верхню шапку
+      Google-календаря.
+    */
+
+    .calendar-viewport {
+      overflow: hidden;
+      height: 1150px;
+
+      background: white;
     }
 
     iframe {
+      position: relative;
+
+      top: calc(var(--crop) * -1);
+
       width: 100%;
-      height: 1250px;
+      height: calc(1150px + var(--crop));
 
       display: block;
 
       border: 0;
+
       background: white;
     }
 
+    /* ===============================
+       FOOTER
+    ================================ */
+
     .footer-link {
-      max-width: 1560px;
-      margin: 13px auto 3px;
+      max-width: 1580px;
+
+      margin: 16px auto 5px;
 
       text-align: center;
 
+      color: #8298af;
+
       font-size: 13px;
-      color: #8294a7;
     }
 
     .footer-link a {
-      color: #3f72a5;
+      color: var(--gold-light);
+
       font-weight: 700;
+
       text-decoration: none;
     }
 
     .footer-link a:hover {
-      text-decoration: underline;
+      color: white;
     }
 
-    /* ===== MOBILE ===== */
+    /* ===============================
+       MOBILE
+    ================================ */
 
-    @media (max-width: 900px) {
+    @media (max-width: 950px) {
+
       .hero {
-        grid-template-columns: 110px 1fr;
+        grid-template-columns: 125px 1fr;
+
+        padding: 24px;
+      }
+
+      .logo-wrap {
+        width: 120px;
+        height: 120px;
+      }
+
+      .logo-wrap img {
+        width: 115px;
+        height: 115px;
       }
 
       .year-card {
         grid-column: 1 / -1;
-        width: 100%;
-        min-width: 0;
-        padding: 14px 18px;
-      }
 
-      .logo-wrap img {
-        width: 105px;
-        height: 105px;
+        width: 100%;
+
+        box-shadow:
+          inset 0 2px 2px rgba(255,255,255,.85),
+          inset 0 -3px 8px rgba(127,80,12,.16),
+          0 7px 0 #8c611c,
+          0 16px 25px rgba(0,0,0,.20);
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 650px) {
+
+      :root {
+        --crop: 265px;
+      }
+
       .page {
         padding: 10px;
       }
@@ -310,18 +474,17 @@
       .hero {
         grid-template-columns: 1fr;
 
-        gap: 10px;
+        gap: 12px;
 
         padding: 20px 17px;
 
         text-align: center;
 
-        border-radius: 23px;
+        border-radius: 24px;
       }
 
-      .logo-wrap img {
-        width: 100px;
-        height: 100px;
+      .logo-wrap {
+        margin: 0 auto;
       }
 
       .school-name {
@@ -330,30 +493,31 @@
       }
 
       h1 {
-        font-size: 30px;
-        letter-spacing: -.8px;
+        font-size: 31px;
       }
 
       .author {
         justify-content: center;
-        font-size: 14px;
-      }
 
-      .year-card {
-        border-radius: 17px;
+        font-size: 14px;
       }
 
       .calendar-shell {
         padding: 5px;
-        border-radius: 23px;
+
+        border-radius: 24px;
       }
 
-      .calendar-inner {
-        border-radius: 18px;
+      .calendar-white {
+        border-radius: 19px;
+      }
+
+      .calendar-viewport {
+        height: 1300px;
       }
 
       iframe {
-        height: 1350px;
+        height: calc(1300px + var(--crop));
       }
     }
   </style>
@@ -384,9 +548,17 @@
         </h1>
 
         <div class="author">
-          <span>Заступник директора з виховної роботи</span>
+
+          <span>
+            Заступник директора з виховної роботи
+          </span>
+
           <span class="author-dot"></span>
-          <strong>Н. С. Товстуха</strong>
+
+          <strong>
+            Н. С. Товстуха
+          </strong>
+
         </div>
 
       </div>
@@ -401,12 +573,16 @@
 
     <section class="calendar-shell">
 
-      <div class="calendar-inner">
+      <div class="calendar-white">
 
-        <iframe
-          src="https://script.google.com/macros/s/AKfycbzwlV7h3SKCJWjrLU3AAnkfmyI527AgW5aYzfQXAnil4xB63cniTyvQAnvLWvw6i69u9Q/exec"
-          title="Календар виховної роботи"
-        ></iframe>
+        <div class="calendar-viewport">
+
+          <iframe
+            src="https://script.google.com/macros/s/AKfycbzwlV7h3SKCJWjrLU3AAnkfmyI527AgW5aYzfQXAnil4xB63cniTyvQAnvLWvw6i69u9Q/exec"
+            title="Календар виховної роботи"
+          ></iframe>
+
+        </div>
 
       </div>
 
@@ -414,13 +590,16 @@
 
 
     <div class="footer-link">
+
       Якщо календар не відобразився —
+
       <a
         href="https://script.google.com/macros/s/AKfycbzwlV7h3SKCJWjrLU3AAnkfmyI527AgW5aYzfQXAnil4xB63cniTyvQAnvLWvw6i69u9Q/exec"
         target="_blank"
       >
         відкрити окремо
       </a>
+
     </div>
 
   </main>
