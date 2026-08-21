@@ -4,150 +4,356 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Календар виховної роботи 2026–2027</title>
+  <title>Календар виховної роботи на 2026–2027 н. р.</title>
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      --navy: #14365e;
+      --navy-soft: #58718d;
+      --gold: #c79a3b;
+      --gold-light: #ead8aa;
+      --blue-light: #edf6ff;
+      --line: #dfe9f4;
+      --white: #ffffff;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      color: var(--navy);
       background:
-        radial-gradient(circle at top left, #f4f9ff 0, transparent 35%),
-        linear-gradient(135deg, #ffffff 0%, #f7fbff 55%, #fffaf0 100%);
-      color: #17365d;
+        radial-gradient(circle at 8% 4%, rgba(210,232,255,.75), transparent 27%),
+        radial-gradient(circle at 93% 6%, rgba(255,239,197,.55), transparent 24%),
+        linear-gradient(180deg, #fbfdff 0%, #f3f8fd 48%, #f7faff 100%);
     }
 
     .page {
       width: 100%;
-      min-height: 100vh;
-      padding: 28px;
+      padding: 22px;
     }
 
-    .header {
-      max-width: 1500px;
-      margin: 0 auto 22px;
-      background: rgba(255,255,255,.94);
-      border: 1px solid #e2ebf5;
-      border-radius: 30px;
-      padding: 28px 34px;
-      display: flex;
+    /* ===== PREMIUM HEADER ===== */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      max-width: 1560px;
+      margin: 0 auto 18px;
+      min-height: 190px;
+
+      display: grid;
+      grid-template-columns: 150px 1fr auto;
       align-items: center;
       gap: 28px;
-      box-shadow: 0 18px 50px rgba(48, 82, 120, .10);
+
+      padding: 24px 34px;
+
+      background:
+        linear-gradient(
+          115deg,
+          rgba(255,255,255,.98) 0%,
+          rgba(248,252,255,.98) 58%,
+          rgba(255,251,241,.98) 100%
+        );
+
+      border: 1px solid rgba(197,216,235,.85);
+      border-radius: 30px;
+
+      box-shadow:
+        0 20px 55px rgba(37,76,116,.10),
+        inset 0 1px 0 rgba(255,255,255,.9);
     }
 
-    .logo {
-      width: 125px;
-      height: 125px;
-      flex: 0 0 125px;
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 4px;
+      background:
+        linear-gradient(
+          90deg,
+          transparent 0%,
+          #d6b25b 22%,
+          #f0dfaa 50%,
+          #c79531 77%,
+          transparent 100%
+        );
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      right: -110px;
+      top: -160px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(229,195,113,.14),
+        transparent 70%
+      );
+      pointer-events: none;
+    }
+
+    .logo-wrap {
+      position: relative;
+      z-index: 1;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
     }
 
-    .logo img {
-      max-width: 100%;
-      max-height: 100%;
+    .logo-wrap img {
+      width: 145px;
+      height: 145px;
       object-fit: contain;
-      filter: drop-shadow(0 10px 12px rgba(20,50,90,.15));
+      display: block;
+
+      filter:
+        drop-shadow(0 12px 18px rgba(21,52,91,.15));
     }
 
-    .text {
-      flex: 1;
+    .main-info {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
     }
 
-    .school {
-      margin: 0 0 8px;
-      color: #ba8a27;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
+    .school-name {
+      margin: 0 0 9px;
+
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
       text-transform: uppercase;
+
+      color: var(--gold);
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(30px, 4vw, 52px);
-      line-height: 1.08;
-      color: #14345b;
+
+      max-width: 900px;
+
+      font-size: clamp(32px, 3.6vw, 52px);
+      line-height: 1.06;
+      letter-spacing: -1.5px;
+
+      color: var(--navy);
       font-weight: 800;
     }
 
+    h1 span {
+      display: block;
+      margin-top: 4px;
+
+      font-size: .72em;
+      font-weight: 650;
+      letter-spacing: -.5px;
+
+      color: #355b82;
+    }
+
     .author {
-      margin-top: 16px;
-      font-size: 18px;
-      color: #62768d;
-      line-height: 1.5;
+      margin-top: 15px;
+
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+
+      font-size: 16px;
+      color: #687f98;
     }
 
     .author strong {
-      color: #17365d;
+      color: var(--navy);
+      font-weight: 750;
     }
 
-    .calendar-wrap {
-      max-width: 1500px;
+    .author-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: inline-block;
+    }
+
+    .year-card {
+      position: relative;
+      z-index: 1;
+
+      min-width: 210px;
+      padding: 20px 24px;
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(239,247,255,.95),
+          rgba(255,255,255,.96)
+        );
+
+      border: 1px solid #d9e6f2;
+      border-radius: 22px;
+
+      box-shadow:
+        0 10px 30px rgba(38,75,112,.07);
+    }
+
+    .year-card strong {
+      display: block;
+
+      font-size: 24px;
+      color: var(--navy);
+      letter-spacing: -.5px;
+    }
+
+    .year-card span {
+      display: block;
+      margin-top: 5px;
+
+      font-size: 13px;
+      color: #7c8fa3;
+    }
+
+    /* ===== CALENDAR ===== */
+
+    .calendar-shell {
+      max-width: 1560px;
       margin: 0 auto;
-      background: white;
-      border: 1px solid #e1eaf4;
+
+      padding: 8px;
+
+      background: rgba(255,255,255,.72);
+
+      border: 1px solid rgba(214,226,239,.9);
       border-radius: 30px;
+
+      box-shadow:
+        0 22px 60px rgba(40,78,116,.10);
+
+      backdrop-filter: blur(10px);
+    }
+
+    .calendar-inner {
       overflow: hidden;
-      box-shadow: 0 18px 50px rgba(48, 82, 120, .11);
+
+      background: white;
+      border-radius: 23px;
     }
 
     iframe {
       width: 100%;
-      height: 1150px;
-      border: 0;
+      height: 1250px;
+
       display: block;
+
+      border: 0;
       background: white;
     }
 
-    .fallback {
-      max-width: 1500px;
-      margin: 18px auto 0;
+    .footer-link {
+      max-width: 1560px;
+      margin: 13px auto 3px;
+
       text-align: center;
-      color: #7a8da3;
-      font-size: 14px;
+
+      font-size: 13px;
+      color: #8294a7;
     }
 
-    .fallback a {
-      color: #2769aa;
+    .footer-link a {
+      color: #3f72a5;
       font-weight: 700;
       text-decoration: none;
     }
 
-    @media (max-width: 720px) {
+    .footer-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== MOBILE ===== */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 110px 1fr;
+      }
+
+      .year-card {
+        grid-column: 1 / -1;
+        width: 100%;
+        min-width: 0;
+        padding: 14px 18px;
+      }
+
+      .logo-wrap img {
+        width: 105px;
+        height: 105px;
+      }
+    }
+
+    @media (max-width: 640px) {
       .page {
-        padding: 12px;
+        padding: 10px;
       }
 
-      .header {
-        padding: 22px 18px;
-        border-radius: 22px;
-        flex-direction: column;
+      .hero {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+        padding: 20px 17px;
+
         text-align: center;
-        gap: 12px;
+
+        border-radius: 23px;
       }
 
-      .logo {
-        width: 95px;
-        height: 95px;
-        flex-basis: 95px;
+      .logo-wrap img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .school-name {
+        font-size: 11px;
+        letter-spacing: 1.4px;
+      }
+
+      h1 {
+        font-size: 30px;
+        letter-spacing: -.8px;
       }
 
       .author {
-        font-size: 15px;
+        justify-content: center;
+        font-size: 14px;
       }
 
-      .calendar-wrap {
-        border-radius: 20px;
+      .year-card {
+        border-radius: 17px;
+      }
+
+      .calendar-shell {
+        padding: 5px;
+        border-radius: 23px;
+      }
+
+      .calendar-inner {
+        border-radius: 18px;
       }
 
       iframe {
-        height: 1300px;
+        height: 1350px;
       }
     }
   </style>
@@ -157,49 +363,64 @@
 
   <main class="page">
 
-    <header class="header">
+    <section class="hero">
 
-      <div class="logo">
-        <img src="logo.png" alt="Логотип Львівського ліцею">
+      <div class="logo-wrap">
+        <img
+          src="logo.png"
+          alt="Логотип Львівського ліцею"
+        >
       </div>
 
-      <div class="text">
+      <div class="main-info">
 
-        <p class="school">
+        <p class="school-name">
           Львівський ліцей Тягинської сільської ради
         </p>
 
         <h1>
-          Календар виховної роботи<br>
-          на 2026–2027 н. р.
+          Календар виховної роботи
+          <span>на 2026–2027 н. р.</span>
         </h1>
 
         <div class="author">
-          Заступник директора з виховної роботи<br>
+          <span>Заступник директора з виховної роботи</span>
+          <span class="author-dot"></span>
           <strong>Н. С. Товстуха</strong>
         </div>
 
       </div>
 
-    </header>
-
-    <section class="calendar-wrap">
-
-      <iframe
-        src="https://script.google.com/macros/s/AKfycbzwlV7h3SKCJWjrLU3AAnkfmyI527AgW5aYzfQXAnil4xB63cniTyvQAnvLWvw6i69u9Q/exec"
-        title="Календар виховної роботи"
-        loading="lazy">
-      </iframe>
+      <div class="year-card">
+        <strong>2026 / 2027</strong>
+        <span>серпень — червень</span>
+      </div>
 
     </section>
 
-    <div class="fallback">
-      Якщо календар не відобразився,
+
+    <section class="calendar-shell">
+
+      <div class="calendar-inner">
+
+        <iframe
+          src="https://script.google.com/macros/s/AKfycbzwlV7h3SKCJWjrLU3AAnkfmyI527AgW5aYzfQXAnil4xB63cniTyvQAnvLWvw6i69u9Q/exec"
+          title="Календар виховної роботи"
+        ></iframe>
+
+      </div>
+
+    </section>
+
+
+    <div class="footer-link">
+      Якщо календар не відобразився —
       <a
         href="https://script.google.com/macros/s/AKfycbzwlV7h3SKCJWjrLU3AAnkfmyI527AgW5aYzfQXAnil4xB63cniTyvQAnvLWvw6i69u9Q/exec"
-        target="_blank">
-        відкрити календар окремо
-      </a>.
+        target="_blank"
+      >
+        відкрити окремо
+      </a>
     </div>
 
   </main>
