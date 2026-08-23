@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
@@ -7,1925 +7,763 @@
   <title>Календар виховної роботи на 2026–2027 н. р.</title>
 
   <style>
+    *{box-sizing:border-box}
 
-    /* =========================================================
-       ОСНОВА
-    ========================================================= */
-
-    * {
-      box-sizing: border-box;
+    :root{
+      --navy:#06182d;
+      --navy2:#0a2748;
+      --navy3:#123e69;
+      --gold:#d8ad55;
+      --gold-soft:#f0d58f;
+      --white:#ffffff;
+      --soft:#f7f9fc;
+      --crop:220px;
     }
 
-    :root {
-      --navy-950: #041326;
-      --navy-900: #061a32;
-      --navy-850: #08213e;
-      --navy-800: #0b2b50;
-      --navy-700: #124477;
-      --blue: #1d5a99;
-
-      --gold: #d9aa45;
-      --gold-bright: #f4d984;
-      --gold-light: #f8e7ad;
-      --gold-dark: #8e6017;
-
-      --white: #ffffff;
-      --soft-white: #f8fbff;
-      --soft-blue: #eaf4ff;
-
-      --crop: 220px;
+    html,body{
+      margin:0;
+      min-height:100%;
     }
 
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
+    body{
+      font-family:"Segoe UI",Arial,Helvetica,sans-serif;
+      color:#fff;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(43,104,161,.28),transparent 31%),
+        radial-gradient(circle at 93% 8%,rgba(206,167,82,.12),transparent 24%),
+        linear-gradient(145deg,#051629 0%,#092440 46%,#06182d 100%);
+      background-attachment:fixed;
     }
 
-    body {
-      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-      color: #ffffff;
+    .page{
+      width:100%;
+      padding:24px;
+    }
+
+    /* =====================================
+       PREMIUM MONTHLY HERO
+    ====================================== */
+
+    .hero{
+      position:relative;
+      max-width:1580px;
+      height:330px;
+      margin:0 auto 22px;
+      overflow:hidden;
+
+      border:1px solid rgba(223,187,100,.45);
+      border-radius:30px;
 
       background:
-        radial-gradient(
-          circle at 10% 0%,
-          rgba(75, 143, 214, .30),
-          transparent 28%
-        ),
-        radial-gradient(
-          circle at 90% 5%,
-          rgba(239, 194, 92, .15),
-          transparent 24%
-        ),
-        radial-gradient(
-          circle at 50% 110%,
-          rgba(39, 105, 175, .18),
-          transparent 35%
-        ),
-        linear-gradient(
-          145deg,
-          #041326 0%,
-          #08213d 43%,
-          #061830 100%
-        );
-
-      background-attachment: fixed;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-
-      pointer-events: none;
-
-      background:
-        linear-gradient(
-          180deg,
-          rgba(255,255,255,.025),
-          transparent 25%
-        );
-
-      z-index: 0;
-    }
-
-    .page {
-      position: relative;
-      z-index: 1;
-
-      width: 100%;
-      padding: 30px 24px 24px;
-    }
-
-
-    /* =========================================================
-       HERO / ШАПКА
-    ========================================================= */
-
-    .hero {
-      position: relative;
-
-      max-width: 1580px;
-      min-height: 245px;
-
-      margin: 16px auto 24px;
-
-      display: grid;
-
-      grid-template-columns:
-        165px
-        minmax(0, 1fr)
-        240px;
-
-      align-items: center;
-      gap: 30px;
-
-      padding: 34px 38px 29px;
-
-      overflow: visible;
-
-      border-radius: 34px;
-
-      border:
-        1px solid rgba(236, 201, 116, .48);
-
-      background:
-        radial-gradient(
-          circle at 15% 30%,
-          rgba(73, 139, 205, .17),
-          transparent 34%
-        ),
-        radial-gradient(
-          circle at 82% 22%,
-          rgba(112, 164, 215, .18),
-          transparent 34%
-        ),
-        linear-gradient(
-          130deg,
-          rgba(17, 52, 92, .96),
-          rgba(7, 27, 51, .98)
-        );
+        linear-gradient(115deg,#0a2d51 0%,#071d36 48%,#06182d 100%);
 
       box-shadow:
-        0 30px 75px rgba(0,0,0,.34),
+        0 28px 70px rgba(0,0,0,.30),
+        inset 0 1px 0 rgba(255,255,255,.07);
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      z-index:8;
+      left:5%;
+      top:0;
+      width:90%;
+      height:2px;
+      background:
+        linear-gradient(90deg,transparent,#bb842b,#f2d992,#bb842b,transparent);
+      box-shadow:0 0 15px rgba(238,203,116,.25);
+    }
+
+    .photo-stage{
+      position:absolute;
+      z-index:1;
+      top:18px;
+      right:18px;
+      bottom:18px;
+      width:61%;
+      overflow:hidden;
+
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:25px;
+
+      background:#0b2744;
+
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.04),
+        0 15px 40px rgba(0,0,0,.22);
+    }
+
+    .month-photo{
+      position:absolute;
+      inset:-2%;
+      width:104%;
+      height:104%;
+      object-fit:cover;
+      opacity:0;
+      transform:scale(1.035);
+      filter:saturate(1.03) contrast(1.02) brightness(.94);
+      transition:opacity .7s ease;
+      animation:slowPhotoMove 18s ease-in-out infinite alternate;
+    }
+
+    .month-photo.active{
+      opacity:1;
+    }
+
+    @keyframes slowPhotoMove{
+      from{transform:scale(1.035) translate3d(-.4%,0,0)}
+      to{transform:scale(1.075) translate3d(.8%,-.4%,0)}
+    }
+
+    .photo-stage::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:3;
+      pointer-events:none;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(6,24,45,.78) 0%,
+          rgba(6,24,45,.40) 22%,
+          rgba(6,24,45,.08) 52%,
+          rgba(6,24,45,.02) 100%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.05),
+          transparent 22%,
+          transparent 72%,
+          rgba(3,15,28,.23)
+        );
+    }
+
+    .glass-sheen{
+      position:absolute;
+      z-index:4;
+      inset:0;
+      pointer-events:none;
+      border-radius:inherit;
+
+      background:
+        linear-gradient(
+          115deg,
+          rgba(255,255,255,.11),
+          transparent 18%,
+          transparent 72%,
+          rgba(255,255,255,.025)
+        );
+    }
+
+    .hero-shade{
+      position:absolute;
+      z-index:2;
+      inset:0;
+      pointer-events:none;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(5,22,41,.98) 0%,
+          rgba(6,25,46,.95) 34%,
+          rgba(6,25,46,.54) 55%,
+          rgba(6,25,46,.06) 76%,
+          transparent 100%
+        );
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:10;
+      height:100%;
+
+      display:grid;
+      grid-template-columns:125px minmax(430px,1fr);
+      align-content:center;
+      align-items:center;
+      gap:26px;
+
+      width:59%;
+      padding:34px 0 74px 34px;
+    }
+
+    .logo-wrap{
+      position:relative;
+      width:116px;
+      height:116px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+
+      background:#fff;
+      border:2px solid rgba(222,181,82,.88);
+
+      box-shadow:
+        0 12px 26px rgba(0,0,0,.24),
+        0 0 0 6px rgba(255,255,255,.025);
+    }
+
+    .logo-wrap::after{
+      content:"";
+      position:absolute;
+      inset:-3px;
+      border-radius:50%;
+      border:1px solid rgba(244,219,155,.35);
+      box-shadow:0 0 16px rgba(229,191,99,.12);
+      animation:logoBreath 6s ease-in-out infinite;
+    }
+
+    @keyframes logoBreath{
+      0%,100%{opacity:.45}
+      50%{opacity:.9}
+    }
+
+    .logo-wrap img{
+      width:108px;
+      height:108px;
+      object-fit:contain;
+      border-radius:50%;
+      background:#fff;
+    }
+
+    .main-info{
+      min-width:0;
+    }
+
+    .school-name{
+      margin:0 0 8px;
+      color:var(--gold-soft);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:0;
+      max-width:760px;
+      color:#fff;
+
+      font-size:clamp(34px,3.5vw,54px);
+      line-height:1.02;
+      font-weight:780;
+      letter-spacing:-1.3px;
+
+      text-shadow:0 7px 20px rgba(0,0,0,.25);
+    }
+
+    h1 span{
+      display:block;
+      margin-top:5px;
+      color:#c9dced;
+      font-size:.67em;
+      font-weight:560;
+      letter-spacing:-.3px;
+    }
+
+    .author{
+      margin-top:15px;
+
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:8px;
+
+      color:#aebfd1;
+      font-size:15px;
+    }
+
+    .author strong{
+      color:#fff;
+      font-weight:720;
+    }
+
+    .author-dot{
+      width:5px;
+      height:5px;
+      border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 8px rgba(222,174,72,.48);
+    }
+
+    .year-card{
+      position:absolute;
+      z-index:12;
+      right:38px;
+      top:34px;
+
+      min-width:188px;
+      padding:14px 18px;
+
+      text-align:center;
+
+      color:#f8fbff;
+
+      border:1px solid rgba(221,185,94,.62);
+      border-radius:14px;
+
+      background:
+        linear-gradient(145deg,rgba(7,29,52,.72),rgba(9,38,68,.58));
+
+      backdrop-filter:blur(12px);
+
+      box-shadow:
         inset 0 1px 0 rgba(255,255,255,.09),
-        inset 0 -1px 0 rgba(255,255,255,.025);
-
-      isolation: isolate;
+        0 10px 25px rgba(0,0,0,.18);
     }
 
-
-    /* скляна внутрішня площина */
-
-    .hero-glass {
-      position: absolute;
-      inset: 12px;
-
-      border-radius: 27px;
-
-      border:
-        1px solid rgba(255,255,255,.075);
-
-      background:
-        linear-gradient(
-          180deg,
-          rgba(255,255,255,.045),
-          rgba(255,255,255,.012)
-        );
-
-      pointer-events: none;
-      z-index: 0;
+    .year-card strong{
+      display:block;
+      font-size:22px;
+      font-weight:800;
+      letter-spacing:.03em;
     }
 
+    .year-card span{
+      display:block;
+      margin-top:4px;
+      color:#ead9a6;
+      font-size:12px;
+      font-weight:650;
+    }
 
-    /* верхній золотий відблиск */
+    .workspace{
+      position:absolute;
+      z-index:14;
+      left:31%;
+      right:22px;
+      bottom:0;
+      height:122px;
+      pointer-events:none;
+    }
 
-    .hero-top-line {
-      position: absolute;
+    .shelf{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:7px;
+      height:23px;
 
-      top: 0;
-      left: 5%;
-
-      width: 90%;
-      height: 3px;
-
-      border-radius: 999px;
+      border:1px solid rgba(216,173,85,.34);
+      border-radius:50% 50% 10px 10px;
 
       background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #af7620,
-          #f9e8ac,
-          #d39e38,
-          transparent
-        );
+        linear-gradient(180deg,rgba(29,64,91,.95),rgba(7,27,47,.98));
 
       box-shadow:
-        0 0 18px rgba(240, 204, 112, .35);
-
-      pointer-events: none;
-      z-index: 2;
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 12px 20px rgba(0,0,0,.24);
     }
 
-
-    /* =========================================================
-       ЗОЛОТІ КІЛЬЦЯ КАЛЕНДАРЯ
-    ========================================================= */
-
-    .calendar-binding {
-      position: absolute;
-
-      top: -24px;
-      left: 50%;
-
-      width: 76%;
-
-      transform: translateX(-50%);
-
-      display: flex;
-      justify-content: space-between;
-
-      z-index: 10;
-
-      pointer-events: none;
-    }
-
-
-    .binding-unit {
-      position: relative;
-
-      width: 34px;
-      height: 58px;
-    }
-
-
-    /* отвір у календарі */
-
-    .binding-unit::before {
-      content: "";
-
-      position: absolute;
-
-      left: 50%;
-      bottom: 2px;
-
-      width: 19px;
-      height: 10px;
-
-      transform: translateX(-50%);
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          ellipse,
-          #020c17 0%,
-          #06182d 50%,
-          #284a70 72%,
-          #d3a54c 78%,
-          #f1d47f 100%
-        );
-
-      box-shadow:
-        inset 0 2px 4px rgba(0,0,0,.75),
-        0 1px 0 rgba(255,255,255,.15);
-    }
-
-
-    /* металеве кільце */
-
-    .ring {
-      position: absolute;
-
-      left: 50%;
-      top: 0;
-
-      width: 21px;
-      height: 48px;
-
-      transform: translateX(-50%);
-
-      border: 5px solid transparent;
-
-      border-radius: 50%;
-
-      background:
-        linear-gradient(
-          100deg,
-          #765011 0%,
-          #c58d28 15%,
-          #fff0b1 35%,
-          #e4b64d 55%,
-          #986418 74%,
-          #f5d77f 90%,
-          #815410 100%
-        )
-        border-box;
-
-      mask:
-        linear-gradient(#000 0 0) padding-box,
-        linear-gradient(#000 0 0);
-
-      -webkit-mask:
-        linear-gradient(#000 0 0) padding-box,
-        linear-gradient(#000 0 0);
-
-      mask-composite: exclude;
-      -webkit-mask-composite: xor;
+    .books{
+      position:absolute;
+      left:3%;
+      bottom:20px;
+      width:min(310px,30vw);
+      max-height:150px;
+      object-fit:contain;
+      object-position:left bottom;
 
       filter:
-        drop-shadow(0 4px 2px rgba(0,0,0,.27))
-        drop-shadow(0 0 5px rgba(241,204,111,.15));
-
-      animation:
-        bindingGlow 7s ease-in-out infinite;
+        drop-shadow(0 14px 18px rgba(0,0,0,.30));
     }
 
-
-    @keyframes bindingGlow {
-
-      0%,
-      100% {
-        filter:
-          drop-shadow(0 4px 2px rgba(0,0,0,.27))
-          drop-shadow(0 0 4px rgba(241,204,111,.12));
-      }
-
-      50% {
-        filter:
-          drop-shadow(0 4px 2px rgba(0,0,0,.28))
-          drop-shadow(0 0 9px rgba(248,218,142,.25));
-      }
-
-    }
-
-
-    /* =========================================================
-       ДЕКОРАТИВНЕ СВІТЛО
-    ========================================================= */
-
-    .hero-light-left {
-      position: absolute;
-
-      left: 15%;
-      bottom: -45px;
-
-      width: 370px;
-      height: 180px;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(132, 196, 255, .16),
-          transparent 70%
-        );
-
-      filter: blur(12px);
-
-      pointer-events: none;
-      z-index: 0;
-    }
-
-
-    .hero-light-right {
-      position: absolute;
-
-      right: -120px;
-      top: -120px;
-
-      width: 410px;
-      height: 410px;
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(246, 212, 126, .13),
-          transparent 69%
-        );
-
-      pointer-events: none;
-      z-index: 0;
-    }
-
-
-    /* =========================================================
-       СЕЗОННІ ЧАСТИНКИ
-    ========================================================= */
-
-    .particles {
-      position: absolute;
-
-      inset: 0;
-
-      overflow: hidden;
-      border-radius: 34px;
-
-      pointer-events: none;
-
-      z-index: 1;
-    }
-
-
-    .particle {
-      position: absolute;
-
-      bottom: -40px;
-
-      opacity: 0;
-
-      animation:
-        seasonalFloat var(--duration) linear infinite;
-
-      animation-delay:
-        var(--delay);
-
-      will-change:
-        transform,
-        opacity;
-    }
-
-
-    @keyframes seasonalFloat {
-
-      0% {
-        opacity: 0;
-
-        transform:
-          translate3d(0,0,0)
-          rotate(var(--rotation))
-          scale(var(--scale));
-      }
-
-      12% {
-        opacity: .55;
-      }
-
-      80% {
-        opacity: .45;
-      }
-
-      100% {
-        opacity: 0;
-
-        transform:
-          translate3d(
-            var(--drift),
-            -310px,
-            0
-          )
-          rotate(
-            calc(var(--rotation) + 150deg)
-          )
-          scale(var(--scale));
-      }
-
-    }
-
-
-    /* ОСІНЬ */
-
-    body.season-autumn .particle {
-
-      width: 13px;
-      height: 20px;
-
-      border-radius:
-        70% 15% 70% 15%;
-
-      background:
-        linear-gradient(
-          145deg,
-          #ffe496 0%,
-          #f5bd4e 45%,
-          #d7811f 78%,
-          #ae5914 100%
-        );
-
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.36),
-        0 0 12px rgba(255,189,73,.13);
-    }
-
-
-    /* ЗИМА */
-
-    body.season-winter .particle {
-
-      width: 8px;
-      height: 8px;
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          #ffffff 0%,
-          #dff1ff 54%,
-          #a9d4ff 100%
-        );
-
-      box-shadow:
-        0 0 12px rgba(210,235,255,.42);
-    }
-
-
-    /* ВЕСНА */
-
-    body.season-spring .particle {
-
-      width: 13px;
-      height: 13px;
-
-      border-radius:
-        55% 55% 55% 8%;
-
-      background:
-        linear-gradient(
-          145deg,
-          #ffffff,
-          #ffe4ed
-        );
-
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.9),
-        0 0 10px rgba(255,222,235,.30);
-    }
-
-
-    /* ЛІТО */
-
-    body.season-summer .particle {
-
-      width: 9px;
-      height: 9px;
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          #fff9d7 0%,
-          #f4dc87 58%,
-          rgba(244,220,135,.2) 100%
-        );
-
-      box-shadow:
-        0 0 14px rgba(255,224,134,.28);
-    }
-
-
-    /* =========================================================
-       ЛОГОТИП
-    ========================================================= */
-
-    .logo-wrap {
-      position: relative;
-
-      z-index: 4;
-
-      width: 150px;
-      height: 150px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle at 35% 24%,
-          rgba(255,255,255,.21),
-          rgba(255,255,255,.035)
-        );
-
-      border:
-        3px solid var(--gold);
-
-      box-shadow:
-        inset 0 0 30px rgba(255,255,255,.04),
-        0 16px 34px rgba(0,0,0,.23),
-        0 0 13px rgba(217,170,69,.15);
-
-      transition:
-        transform .45s ease,
-        box-shadow .45s ease;
-
-      animation:
-        logoGoldenBreath 5.5s ease-in-out infinite;
-    }
-
-
-    /* друге тонке золоте кільце */
-
-    .logo-wrap::before {
-      content: "";
-
-      position: absolute;
-
-      inset: -8px;
-
-      border-radius: 50%;
-
-      border:
-        1px solid rgba(247,220,148,.37);
-
-      box-shadow:
-        0 0 12px rgba(232,185,82,.12),
-        inset 0 0 8px rgba(255,255,255,.07);
-
-      pointer-events: none;
-    }
-
-
-    /* рухомий золотий відблиск */
-
-    .logo-wrap::after {
-      content: "";
-
-      position: absolute;
-
-      inset: -6px;
-
-      border-radius: 50%;
-
-      background:
-        conic-gradient(
-          from 0deg,
-
-          transparent 0deg,
-          transparent 300deg,
-
-          rgba(255,245,205,0) 320deg,
-
-          rgba(255,250,223,.92) 340deg,
-
-          rgba(255,223,135,.42) 350deg,
-
-          transparent 360deg
-        );
-
-      -webkit-mask:
-        radial-gradient(
-          farthest-side,
-          transparent calc(100% - 7px),
-          #000 calc(100% - 6px)
-        );
-
-      mask:
-        radial-gradient(
-          farthest-side,
-          transparent calc(100% - 7px),
-          #000 calc(100% - 6px)
-        );
-
-      animation:
-        goldRingShine 9s linear infinite;
-
-      pointer-events: none;
-    }
-
-
-    @keyframes goldRingShine {
-
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-
-    }
-
-
-    @keyframes logoGoldenBreath {
-
-      0%,
-      100% {
-
-        box-shadow:
-          inset 0 0 30px rgba(255,255,255,.04),
-          0 16px 34px rgba(0,0,0,.23),
-          0 0 9px rgba(217,170,69,.11);
-
-      }
-
-      50% {
-
-        box-shadow:
-          inset 0 0 30px rgba(255,255,255,.06),
-          0 16px 34px rgba(0,0,0,.23),
-          0 0 22px rgba(239,199,104,.23);
-
-      }
-
-    }
-
-
-    .logo-wrap img {
-
-      width: 142px;
-      height: 142px;
-
-      object-fit: contain;
-
-      border-radius: 50%;
-
-      background: #ffffff;
+    .laptop{
+      position:absolute;
+      right:2%;
+      bottom:12px;
+      width:min(390px,36vw);
+      max-height:190px;
+      object-fit:contain;
+      object-position:right bottom;
 
       filter:
-        drop-shadow(
-          0 14px 18px rgba(0,0,0,.34)
-        );
-
+        drop-shadow(0 16px 21px rgba(0,0,0,.32));
     }
 
-
-    @media (hover:hover) {
-
-      .logo-wrap:hover {
-
-        transform:
-          translateY(-3px)
-          scale(1.015);
-
-        box-shadow:
-          inset 0 0 30px rgba(255,255,255,.07),
-          0 20px 38px rgba(0,0,0,.26),
-          0 0 25px rgba(239,199,104,.29);
-
-      }
-
-    }
-
-
-    /* =========================================================
-       ТЕКСТ ШАПКИ
-    ========================================================= */
-
-    .main-info {
-      position: relative;
-      z-index: 4;
-      min-width: 0;
-    }
-
-
-    .school-name {
-
-      margin: 0 0 9px;
-
-      color:
-        var(--gold-light);
-
-      font-size: 13px;
-
-      font-weight: 800;
-
-      letter-spacing: 2.2px;
-
-      text-transform: uppercase;
-
-      text-shadow:
-        0 2px 7px rgba(0,0,0,.25);
-
-    }
-
-
-    h1 {
-
-      margin: 0;
-
-      max-width: 900px;
-
-      color: #ffffff;
-
-      font-size:
-        clamp(
-          35px,
-          3.7vw,
-          55px
-        );
-
-      line-height: 1.04;
-
-      font-weight: 800;
-
-      letter-spacing: -1.5px;
-
-      text-shadow:
-        0 7px 20px rgba(0,0,0,.25);
-
-    }
-
-
-    h1 span {
-
-      display: block;
-
-      margin-top: 5px;
-
-      color: #d2e4f5;
-
-      font-size: .68em;
-
-      font-weight: 650;
-
-      letter-spacing: -.35px;
-
-    }
-
-
-    .author {
-
-      margin-top: 18px;
-
-      display: flex;
-
-      flex-wrap: wrap;
-
-      align-items: center;
-
-      gap: 9px;
-
-      color: #aebfd2;
-
-      font-size: 16px;
-
-    }
-
-
-    .author strong {
-
-      color: white;
-
-      font-weight: 750;
-
-    }
-
-
-    .author-dot {
-
-      width: 6px;
-      height: 6px;
-
-      display: inline-block;
-
-      background:
-        var(--gold);
-
-      border-radius: 50%;
-
-      box-shadow:
-        0 0 8px rgba(222,174,72,.65);
-
-    }
-
-
-    .season-pill {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 7px;
-
-      margin-left: 5px;
-
-      padding:
-        7px 12px;
-
-      border-radius: 999px;
-
-      color: #e9f4ff;
-
-      font-size: 11px;
-
-      font-weight: 750;
-
-      letter-spacing: .6px;
-
-      text-transform: uppercase;
-
-      border:
-        1px solid rgba(255,255,255,.12);
-
-      background:
-        linear-gradient(
-          180deg,
-          rgba(255,255,255,.09),
-          rgba(255,255,255,.035)
-        );
-
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.11);
-
-    }
-
-
-    .season-pill::before {
-
-      content: "";
-
-      width: 7px;
-      height: 7px;
-
-      border-radius: 50%;
-
-      background:
-        linear-gradient(
-          #fff1b5,
-          #d29a32
-        );
-
-      box-shadow:
-        0 0 8px rgba(244,205,107,.30);
-
-    }
-
-
-    /* =========================================================
-       КАРТКА РОКУ
-    ========================================================= */
-
-    .year-card {
-
-      position: relative;
-      z-index: 4;
-
-      min-width: 220px;
-
-      padding: 23px 24px;
-
-      text-align: center;
-
-      color: #102d4d;
-
-      background:
-        linear-gradient(
-          145deg,
-
-          #fff6d2 0%,
-
-          #eac15f 34%,
-
-          #f7dfa0 57%,
-
-          #b77c20 100%
-        );
-
-      border:
-        1px solid rgba(255,237,184,.96);
-
-      border-radius: 24px;
-
-      box-shadow:
-        inset 0 2px 2px rgba(255,255,255,.88),
-        inset 0 -4px 9px rgba(127,80,12,.18),
-        0 9px 0 #875b17,
-        0 21px 31px rgba(0,0,0,.25);
-
-    }
-
-
-    .year-card::before {
-
-      content: "";
-
-      position: absolute;
-
-      left: 8%;
-      right: 8%;
-      top: 5px;
-
-      height: 1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(255,255,255,.85),
-          transparent
-        );
-
-    }
-
-
-    .year-card strong {
-
-      display: block;
-
-      font-size: 27px;
-
-      font-weight: 850;
-
-      text-shadow:
-        0 1px 0 rgba(255,255,255,.65);
-
-    }
-
-
-    .year-card span {
-
-      display: block;
-
-      margin-top: 5px;
-
-      color: #5a461d;
-
-      font-size: 13px;
-
-      font-weight: 650;
-
-    }
-
-
-    .year-card small {
-
-      display: block;
-
-      margin-top: 9px;
-
-      color: #735a29;
-
-      font-size: 10px;
-
-      font-weight: 750;
-
-      letter-spacing: .7px;
-
-      text-transform: uppercase;
-
-    }
-
-
-    /* =========================================================
-       ОБОЛОНКА КАЛЕНДАРЯ
-    ========================================================= */
-
-    .calendar-shell {
-
-      position: relative;
-
-      max-width: 1580px;
-
-      margin: 0 auto;
-
-      padding: 8px;
+    /* =====================================
+       CALENDAR SHELL
+    ====================================== */
+
+    .calendar-shell{
+      position:relative;
+      max-width:1580px;
+      margin:0 auto;
+      padding:6px;
+
+      border:1px solid rgba(212,171,78,.30);
+      border-radius:27px;
 
       background:
         linear-gradient(
           135deg,
-
-          #f8e6ab 0%,
-
-          #c48a25 22%,
-
-          #f8e2a0 48%,
-
-          #a86e18 73%,
-
-          #edd08a 100%
-        );
-
-      border-radius: 34px;
-
-      box-shadow:
-        0 32px 85px rgba(0,0,0,.36),
-        0 0 0 1px rgba(255,220,137,.16);
-
-    }
-
-
-    .calendar-white {
-
-      position: relative;
-
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          180deg,
-          #ffffff,
-          #fbfdff
-        );
-
-      border-radius: 26px;
-
-      box-shadow:
-        inset 0 0 0 1px rgba(208,220,233,.82);
-
-    }
-
-
-    /* =========================================================
-       ВЕРХНЯ ПАНЕЛЬ КАЛЕНДАРЯ
-    ========================================================= */
-
-    .calendar-header {
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 14px;
-
-      padding:
-        16px 27px 14px;
-
-      color: #102e50;
-
-      background:
-        linear-gradient(
-          180deg,
-          #f5faff,
-          #ffffff
-        );
-
-      border-bottom:
-        1px solid rgba(197,213,231,.85);
-
-    }
-
-
-    .calendar-header-title {
-
-      min-width: 0;
-
-    }
-
-
-    .calendar-header-title strong {
-
-      display: block;
-
-      color: #12375f;
-
-      font-size: 17px;
-
-      font-weight: 800;
-
-    }
-
-
-    .calendar-header-title span {
-
-      display: block;
-
-      margin-top: 3px;
-
-      color: #768ba0;
-
-      font-size: 12px;
-
-      font-weight: 600;
-
-    }
-
-
-    .calendar-status {
-
-      flex-shrink: 0;
-
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 7px;
-
-      padding: 8px 13px;
-
-      border-radius: 999px;
-
-      color: #234d79;
-
-      font-size: 11px;
-
-      font-weight: 800;
-
-      letter-spacing: .5px;
-
-      text-transform: uppercase;
-
-      background:
-        linear-gradient(
-          180deg,
-          #ffffff,
-          #eef6ff
-        );
-
-      border:
-        1px solid rgba(184,205,226,.92);
-
-      box-shadow:
-        0 6px 14px rgba(11,45,80,.07),
-        inset 0 1px 0 #fff;
-
-    }
-
-
-    .calendar-status::before {
-
-      content: "";
-
-      width: 7px;
-      height: 7px;
-
-      border-radius: 50%;
-
-      background:
-        linear-gradient(
-          #f8d975,
-          #c9861e
+          rgba(233,207,144,.92),
+          rgba(176,126,39,.88),
+          rgba(235,213,161,.94),
+          rgba(159,107,29,.88)
         );
 
       box-shadow:
-        0 0 9px rgba(220,161,48,.28);
-
+        0 28px 70px rgba(0,0,0,.28);
     }
 
+    .calendar-white{
+      position:relative;
+      overflow:hidden;
+      border-radius:21px;
+      background:#fff;
+      box-shadow:inset 0 0 0 1px rgba(208,220,233,.80);
+    }
 
-    /* =========================================================
-       ПЛАШКИ ДНІВ ТИЖНЯ
-    ========================================================= */
+    .floating-week{
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      z-index:80;
 
-    .floating-week {
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:7px;
 
-      position: absolute;
+      padding:9px 28px 11px;
 
-      top: 67px;
-      left: 0;
-      right: 0;
+      background:rgba(255,255,255,.975);
+      border-bottom:1px solid rgba(190,207,223,.72);
 
-      z-index: 80;
+      box-shadow:0 8px 18px rgba(8,29,54,.10);
 
-      display: grid;
+      opacity:0;
+      transform:translateY(-8px);
+      pointer-events:none;
+      transition:.2s ease;
+    }
 
-      grid-template-columns:
-        repeat(
-          7,
-          1fr
-        );
+    .floating-week.show{
+      opacity:1;
+      transform:translateY(0);
+    }
 
-      gap: 9px;
+    .floating-week div{
+      padding:9px 4px 8px;
 
-      padding:
-        11px 27px 14px;
+      text-align:center;
+
+      color:#eef5fb;
+      font-size:12px;
+      font-weight:800;
+
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:9px;
 
       background:
-        rgba(248,252,255,.92);
-
-      backdrop-filter:
-        blur(12px);
-
-      border-bottom:
-        1px solid rgba(201,216,232,.86);
+        linear-gradient(180deg,#255b8b,#173f68);
 
       box-shadow:
-        0 9px 20px rgba(8,29,54,.11);
-
-      opacity: 0;
-
-      transform:
-        translateY(-8px);
-
-      pointer-events: none;
-
-      transition:
-        .22s ease;
-
+        inset 0 1px 0 rgba(255,255,255,.10),
+        0 4px 10px rgba(12,42,73,.08);
     }
 
-
-    .floating-week.show {
-
-      opacity: 1;
-
-      transform:
-        translateY(0);
-
+    .calendar-viewport{
+      overflow-y:auto;
+      overflow-x:hidden;
+      height:720px;
+      background:white;
     }
 
+    iframe{
+      position:relative;
+      top:calc(var(--crop) * -1);
 
-    .floating-week div {
+      width:100%;
+      height:calc(1150px + var(--crop));
 
-      text-align: center;
-
-      color: #f4f9ff;
-
-      font-size: 13px;
-
-      font-weight: 850;
-
-      letter-spacing: .3px;
-
-      padding:
-        10px 4px 9px;
-
-      border-radius: 13px;
-
-      border:
-        1px solid rgba(255,255,255,.14);
-
-      background:
-        linear-gradient(
-          180deg,
-
-          #3370ad 0%,
-
-          #20558b 44%,
-
-          #153e68 76%,
-
-          #102f50 100%
-        );
-
-      box-shadow:
-        inset 0 2px 1px rgba(255,255,255,.19),
-        inset 0 -3px 8px rgba(4,18,35,.25),
-        0 5px 0 #0b233e,
-        0 11px 18px rgba(9,38,67,.13);
-
-      text-shadow:
-        0 1px 2px rgba(0,0,0,.28);
-
+      display:block;
+      border:0;
+      background:white;
     }
 
+    .footer-link{
+      max-width:1580px;
+      margin:16px auto 5px;
 
-    /* вихідні трохи відрізняються */
-
-    .floating-week div:nth-child(6),
-    .floating-week div:nth-child(7) {
-
-      background:
-        linear-gradient(
-          180deg,
-
-          #477db5 0%,
-
-          #2d6095 45%,
-
-          #1b466f 76%,
-
-          #133658 100%
-        );
-
+      text-align:center;
+      color:#8298af;
+      font-size:13px;
     }
 
-
-    /* =========================================================
-       ВБУДОВАНИЙ GOOGLE-КАЛЕНДАР
-    ========================================================= */
-
-    .calendar-viewport {
-
-      overflow-y: auto;
-      overflow-x: hidden;
-
-      height: 760px;
-
-      background: white;
-
+    .footer-link a{
+      color:var(--gold-soft);
+      font-weight:700;
+      text-decoration:none;
     }
 
-
-    iframe {
-
-      position: relative;
-
-      top:
-        calc(
-          var(--crop) * -1
-        );
-
-      width: 100%;
-
-      height:
-        calc(
-          1180px + var(--crop)
-        );
-
-      display: block;
-
-      border: 0;
-
-      background: white;
-
+    .footer-link a:hover{
+      color:#fff;
     }
 
+    @media(max-width:1050px){
+      .hero{
+        height:360px;
+      }
 
-    /* =========================================================
-       FOOTER
-    ========================================================= */
+      .photo-stage{
+        width:66%;
+      }
 
-    .footer-link {
+      .hero-content{
+        width:70%;
+        grid-template-columns:105px 1fr;
+        padding-left:26px;
+      }
 
-      max-width: 1580px;
+      .logo-wrap{
+        width:98px;
+        height:98px;
+      }
 
-      margin:
-        17px auto 5px;
+      .logo-wrap img{
+        width:91px;
+        height:91px;
+      }
 
-      text-align: center;
+      .workspace{
+        left:24%;
+      }
 
-      color: #93abc1;
+      .books{
+        width:260px;
+      }
 
-      font-size: 13px;
-
+      .laptop{
+        width:340px;
+      }
     }
 
-
-    .footer-link a {
-
-      color:
-        var(--gold-light);
-
-      font-weight: 700;
-
-      text-decoration: none;
-
-      transition:
-        color .2s ease;
-
-    }
-
-
-    .footer-link a:hover {
-
-      color: #ffffff;
-
-    }
-
-
-    /* =========================================================
-       АДАПТИВ
-    ========================================================= */
-
-    @media (max-width: 1050px) {
-
-      .hero {
-
-        grid-template-columns:
-          130px
-          minmax(0,1fr);
-
+    @media(max-width:720px){
+      :root{
+        --crop:265px;
       }
 
-
-      .year-card {
-
-        grid-column:
-          1 / -1;
-
-        width: 100%;
-
+      .page{
+        padding:10px;
       }
 
-
-      .calendar-binding {
-
-        width: 84%;
-
+      .hero{
+        height:440px;
+        border-radius:23px;
       }
 
-    }
-
-
-    @media (max-width: 750px) {
-
-      .calendar-binding {
-
-        width: 88%;
-
+      .photo-stage{
+        top:145px;
+        left:12px;
+        right:12px;
+        bottom:12px;
+        width:auto;
       }
 
-
-      .binding-unit {
-
-        width: 26px;
-
-      }
-
-
-      .ring {
-
-        width: 18px;
-        height: 43px;
-
-      }
-
-    }
-
-
-    @media (max-width: 650px) {
-
-      :root {
-
-        --crop: 265px;
-
-      }
-
-
-      .page {
-
-        padding:
-          28px 10px 10px;
-
-      }
-
-
-      .hero {
-
-        grid-template-columns: 1fr;
-
-        gap: 14px;
-
-        padding:
-          24px 17px 20px;
-
-        text-align: center;
-
-        border-radius: 24px;
-
-      }
-
-
-      .calendar-binding {
-
-        top: -22px;
-
-        width: 90%;
-
-      }
-
-
-      .binding-unit:nth-child(even) {
-
-        display: none;
-
-      }
-
-
-      .logo-wrap {
-
-        margin: 0 auto;
-
-        width: 122px;
-        height: 122px;
-
-      }
-
-
-      .logo-wrap img {
-
-        width: 115px;
-        height: 115px;
-
-      }
-
-
-      .school-name {
-
-        font-size: 11px;
-
-        letter-spacing: 1.3px;
-
-      }
-
-
-      h1 {
-
-        font-size: 31px;
-
-      }
-
-
-      .author {
-
-        justify-content: center;
-
-        font-size: 14px;
-
-      }
-
-
-      .season-pill {
-
-        margin-left: 0;
-
-      }
-
-
-      .calendar-shell {
-
-        padding: 5px;
-
-        border-radius: 24px;
-
-      }
-
-
-      .calendar-white {
-
-        border-radius: 19px;
-
-      }
-
-
-      .calendar-header {
-
-        padding:
-          13px 13px 11px;
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-      }
-
-
-      .calendar-status {
-
-        font-size: 10px;
-
-      }
-
-
-      .floating-week {
-
-        top: 93px;
-
-        gap: 5px;
-
-        padding:
-          9px 10px 12px;
-
-      }
-
-
-      .floating-week div {
-
-        padding:
-          8px 2px 7px;
-
-        font-size: 10px;
-
-        border-radius: 9px;
-
-        box-shadow:
-          inset 0 2px 1px rgba(255,255,255,.17),
-          inset 0 -2px 5px rgba(4,18,35,.22),
-          0 3px 0 #0b233e;
-
-      }
-
-
-      .calendar-viewport {
-
-        height: 1300px;
-
-      }
-
-
-      iframe {
-
-        height:
-          calc(
-            1300px + var(--crop)
+      .hero-shade{
+        background:
+          linear-gradient(
+            180deg,
+            rgba(5,22,41,.99) 0%,
+            rgba(5,22,41,.90) 32%,
+            rgba(5,22,41,.22) 67%,
+            rgba(5,22,41,.04) 100%
           );
-
       }
 
+      .hero-content{
+        width:100%;
+        height:auto;
+        grid-template-columns:72px 1fr;
+        gap:14px;
+
+        padding:24px 18px 0;
+        align-content:start;
+      }
+
+      .logo-wrap{
+        width:66px;
+        height:66px;
+      }
+
+      .logo-wrap img{
+        width:61px;
+        height:61px;
+      }
+
+      .school-name{
+        font-size:9px;
+        letter-spacing:1.15px;
+      }
+
+      h1{
+        font-size:28px;
+      }
+
+      .author{
+        display:none;
+      }
+
+      .year-card{
+        top:104px;
+        right:18px;
+        min-width:142px;
+        padding:9px 12px;
+      }
+
+      .year-card strong{
+        font-size:17px;
+      }
+
+      .workspace{
+        left:3%;
+        right:3%;
+        height:112px;
+      }
+
+      .books{
+        width:210px;
+      }
+
+      .laptop{
+        width:255px;
+      }
+
+      .calendar-shell{
+        padding:4px;
+        border-radius:22px;
+      }
+
+      .calendar-white{
+        border-radius:18px;
+      }
+
+      .calendar-viewport{
+        height:1300px;
+      }
+
+      iframe{
+        height:calc(1300px + var(--crop));
+      }
     }
 
-
-    /* =========================================================
-       МЕНШЕ АНІМАЦІЇ ДЛЯ КОРИСТУВАЧІВ,
-       ЯКІ ЇЇ ВИМКНУЛИ
-    ========================================================= */
-
-    @media (prefers-reduced-motion: reduce) {
-
+    @media(prefers-reduced-motion:reduce){
       *,
       *::before,
-      *::after {
-
-        animation-duration:
-          .001ms !important;
-
-        animation-iteration-count:
-          1 !important;
-
-        transition-duration:
-          .001ms !important;
-
+      *::after{
+        animation:none !important;
+        transition:none !important;
       }
-
     }
-
   </style>
 </head>
-
 
 <body>
 
   <main class="page">
 
-
-    <!-- =====================================================
-         ШАПКА
-    ====================================================== -->
-
     <section class="hero">
 
-
-      <!-- Золоті кільця календаря -->
-
-      <div
-        class="calendar-binding"
-        aria-hidden="true"
-      >
-
-        <div class="binding-unit">
-          <span class="ring"></span>
-        </div>
-
-        <div class="binding-unit">
-          <span class="ring"></span>
-        </div>
-
-        <div class="binding-unit">
-          <span class="ring"></span>
-        </div>
-
-        <div class="binding-unit">
-          <span class="ring"></span>
-        </div>
-
-        <div class="binding-unit">
-          <span class="ring"></span>
-        </div>
-
-        <div class="binding-unit">
-          <span class="ring"></span>
-        </div>
-
-        <div class="binding-unit">
-          <span class="ring"></span>
-        </div>
-
-        <div class="binding-unit">
-          <span class="ring"></span>
-        </div>
-
-        <div class="binding-unit">
-          <span class="ring"></span>
-        </div>
-
-      </div>
-
-
-      <div class="hero-glass"></div>
-
-      <div class="hero-top-line"></div>
-
-      <div class="hero-light-left"></div>
-
-      <div class="hero-light-right"></div>
-
-
-      <!-- сезонна анімація -->
-
-      <div
-        class="particles"
-        id="particles"
-      ></div>
-
-
-      <!-- логотип -->
-
-      <div class="logo-wrap">
-
+      <div class="photo-stage">
         <img
-          src="logo.png"
-          alt="Логотип Львівського ліцею"
+          id="monthPhotoA"
+          class="month-photo active"
+          src="08-serpen.png"
+          alt=""
+          aria-hidden="true"
         >
 
+        <img
+          id="monthPhotoB"
+          class="month-photo"
+          src="08-serpen.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+        <div class="glass-sheen"></div>
       </div>
 
+      <div class="hero-shade"></div>
 
-      <!-- текст -->
+      <div class="hero-content">
 
-      <div class="main-info">
+        <div class="logo-wrap">
+          <img
+            src="logo.png"
+            alt="Логотип Львівського ліцею"
+          >
+        </div>
 
-        <p class="school-name">
-          Львівський ліцей Тягинської сільської ради
-        </p>
+        <div class="main-info">
 
+          <p class="school-name">
+            Львівський ліцей Тягинської сільської ради
+          </p>
 
-        <h1>
+          <h1>
+            Календар виховної роботи
+            <span>на 2026–2027 н. р.</span>
+          </h1>
 
-          Календар виховної роботи
-
-          <span>
-            на 2026–2027 н. р.
-          </span>
-
-        </h1>
-
-
-        <div class="author">
-
-          <span>
-            Заступник директора з виховної роботи
-          </span>
-
-          <span class="author-dot"></span>
-
-          <strong>
-            Н. С. Товстуха
-          </strong>
-
-          <span class="season-pill" id="seasonLabel">
-            сезон
-          </span>
+          <div class="author">
+            <span>Заступник директора з виховної роботи</span>
+            <span class="author-dot"></span>
+            <strong>Н. С. Товстуха</strong>
+          </div>
 
         </div>
 
       </div>
 
-
-      <!-- навчальний рік -->
-
       <div class="year-card">
+        <strong>2026 / 2027</strong>
+        <span id="currentMonthLabel">Серпень 2026</span>
+      </div>
 
-        <strong>
-          2026 / 2027
-        </strong>
+      <div class="workspace">
+        <div class="shelf"></div>
 
-        <span>
-          серпень — червень
-        </span>
+        <img
+          class="books"
+          src="teacher-books.png"
+          alt=""
+          aria-hidden="true"
+        >
 
-        <small id="seasonMini">
-          сезонне оформлення
-        </small>
-
+        <img
+          class="laptop"
+          src="teacher-laptop.png"
+          alt=""
+          aria-hidden="true"
+        >
       </div>
 
     </section>
 
 
-
-    <!-- =====================================================
-         КАЛЕНДАР
-    ====================================================== -->
-
     <section class="calendar-shell">
 
       <div class="calendar-white">
 
-
-        <!-- верхня маленька панель -->
-
-        <div class="calendar-header">
-
-          <div class="calendar-header-title">
-
-            <strong>
-              Інтерактивний календар заходів
-            </strong>
-
-            <span>
-              Львівський ліцей · 2026–2027 навчальний рік
-            </span>
-
-          </div>
-
-
-          <div
-            class="calendar-status"
-            id="calendarStatus"
-          >
-
-            сезонне оформлення
-
-          </div>
-
-        </div>
-
-
-        <!-- закріплений рядок днів -->
-
         <div class="floating-week">
-
           <div>Пн</div>
-
           <div>Вт</div>
-
           <div>Ср</div>
-
           <div>Чт</div>
-
           <div>Пт</div>
-
           <div>Сб</div>
-
           <div>Нд</div>
-
         </div>
-
-
-        <!-- Google Apps Script -->
 
         <div class="calendar-viewport">
 
           <iframe
+            id="calendarFrame"
             src="https://script.google.com/macros/s/AKfycbxRlRohLBMEcZtJ0us4-jPMLC62y64uETmdiLMs3EHJdqRXhur6BSACEXWVGcnBFIp-eg/exec"
             title="Календар виховної роботи"
           ></iframe>
@@ -1937,15 +775,8 @@
     </section>
 
 
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
     <div class="footer-link">
-
       Якщо календар не відобразився —
-
       <a
         href="https://script.google.com/macros/s/AKfycbxRlRohLBMEcZtJ0us4-jPMLC62y64uETmdiLMs3EHJdqRXhur6BSACEXWVGcnBFIp-eg/exec"
         target="_blank"
@@ -1953,325 +784,114 @@
       >
         відкрити окремо
       </a>
-
     </div>
-
 
   </main>
 
 
-
   <script>
+    const monthVisuals = {
+      '2026-08': { image:'08-serpen.png', label:'Серпень 2026' },
+      '2026-09': { image:'09-veresen.png', label:'Вересень 2026' },
+      '2026-10': { image:'10-zhovten.png', label:'Жовтень 2026' },
+      '2026-11': { image:'11-lystopad.png', label:'Листопад 2026' },
+      '2026-12': { image:'12-hruden.png', label:'Грудень 2026' },
 
-    /* =====================================================
-       ЛИПКА ПАНЕЛЬ ДНІВ ТИЖНЯ
-    ====================================================== */
-
-    const calendarViewport =
-      document.querySelector(
-        '.calendar-viewport'
-      );
-
-    const floatingWeek =
-      document.querySelector(
-        '.floating-week'
-      );
-
-
-    if (
-      calendarViewport &&
-      floatingWeek
-    ) {
-
-      calendarViewport.addEventListener(
-        'scroll',
-        function () {
-
-          if (
-            calendarViewport.scrollTop > 65
-          ) {
-
-            floatingWeek.classList.add(
-              'show'
-            );
-
-          } else {
-
-            floatingWeek.classList.remove(
-              'show'
-            );
-
-          }
-
-        }
-      );
-
-    }
-
-
-
-    /* =====================================================
-       АВТОМАТИЧНЕ ВИЗНАЧЕННЯ СЕЗОНУ
-    ====================================================== */
-
-    const currentMonth =
-      new Date().getMonth() + 1;
-
-
-    let season = 'summer';
-
-
-    if (
-      currentMonth >= 9 &&
-      currentMonth <= 11
-    ) {
-
-      season = 'autumn';
-
-    }
-
-    else if (
-      currentMonth === 12 ||
-      currentMonth === 1 ||
-      currentMonth === 2
-    ) {
-
-      season = 'winter';
-
-    }
-
-    else if (
-      currentMonth >= 3 &&
-      currentMonth <= 5
-    ) {
-
-      season = 'spring';
-
-    }
-
-    else {
-
-      season = 'summer';
-
-    }
-
-
-
-    const seasons = {
-
-      autumn: {
-
-        label:
-          'Осінній сезон',
-
-        mini:
-          'золоте листя',
-
-        status:
-          'осіннє оформлення'
-
-      },
-
-
-      winter: {
-
-        label:
-          'Зимовий сезон',
-
-        mini:
-          'легкий сніг',
-
-        status:
-          'зимове оформлення'
-
-      },
-
-
-      spring: {
-
-        label:
-          'Весняний сезон',
-
-        mini:
-          'білий цвіт',
-
-        status:
-          'весняне оформлення'
-
-      },
-
-
-      summer: {
-
-        label:
-          'Літній сезон',
-
-        mini:
-          'сонячне сяйво',
-
-        status:
-          'літнє оформлення'
-
-      }
-
+      '2027-01': { image:'01-sichen.png', label:'Січень 2027' },
+      '2027-02': { image:'02-lyutyi.png', label:'Лютий 2027' },
+      '2027-03': { image:'03-berezen.png', label:'Березень 2027' },
+      '2027-04': { image:'04-kviten.png', label:'Квітень 2027' },
+      '2027-05': { image:'05-traven.png', label:'Травень 2027' },
+      '2027-06': { image:'06-cherven.png', label:'Червень 2027' },
+      '2027-07': { image:'07-lypen.png', label:'Липень 2027' }
     };
 
+    Object.values(monthVisuals).forEach(item => {
+      const preloader = new Image();
+      preloader.src = item.image;
+    });
 
-    document.body.classList.add(
-      'season-' + season
-    );
+    const photoA = document.getElementById('monthPhotoA');
+    const photoB = document.getElementById('monthPhotoB');
+    const monthLabel = document.getElementById('currentMonthLabel');
+    const calendarFrame = document.getElementById('calendarFrame');
 
+    let activePhoto = 'A';
+    let activeMonth = '2026-08';
 
-    const seasonLabel =
-      document.getElementById(
-        'seasonLabel'
-      );
+    function setMonthVisual(monthKey){
+      const visual = monthVisuals[monthKey];
 
-
-    const seasonMini =
-      document.getElementById(
-        'seasonMini'
-      );
-
-
-    const calendarStatus =
-      document.getElementById(
-        'calendarStatus'
-      );
-
-
-    if (seasonLabel) {
-
-      seasonLabel.textContent =
-        seasons[season].label;
-
-    }
-
-
-    if (seasonMini) {
-
-      seasonMini.textContent =
-        seasons[season].mini;
-
-    }
-
-
-    if (calendarStatus) {
-
-      calendarStatus.textContent =
-        seasons[season].status;
-
-    }
-
-
-
-    /* =====================================================
-       СЕЗОННІ ЧАСТИНКИ
-    ====================================================== */
-
-    const particlesContainer =
-      document.getElementById(
-        'particles'
-      );
-
-
-    if (particlesContainer) {
-
-      const amount =
-        season === 'winter'
-          ? 22
-          : season === 'spring'
-            ? 18
-            : season === 'autumn'
-              ? 18
-              : 13;
-
-
-      for (
-        let i = 0;
-        i < amount;
-        i++
-      ) {
-
-        const particle =
-          document.createElement(
-            'span'
-          );
-
-
-        particle.className =
-          'particle';
-
-
-        const left =
-          Math.random() * 100;
-
-
-        const duration =
-          10 + Math.random() * 10;
-
-
-        const delay =
-          -(Math.random() * 12);
-
-
-        const drift =
-          -55 + Math.random() * 110;
-
-
-        const rotation =
-          Math.floor(
-            Math.random() * 360
-          );
-
-
-        const scale =
-          .65 +
-          Math.random() * .9;
-
-
-        particle.style.left =
-          left + '%';
-
-
-        particle.style.setProperty(
-          '--duration',
-          duration + 's'
-        );
-
-
-        particle.style.setProperty(
-          '--delay',
-          delay + 's'
-        );
-
-
-        particle.style.setProperty(
-          '--drift',
-          drift + 'px'
-        );
-
-
-        particle.style.setProperty(
-          '--rotation',
-          rotation + 'deg'
-        );
-
-
-        particle.style.setProperty(
-          '--scale',
-          scale
-        );
-
-
-        particlesContainer.appendChild(
-          particle
-        );
-
+      if(!visual || monthKey === activeMonth){
+        return;
       }
 
+      const incoming =
+        activePhoto === 'A'
+          ? photoB
+          : photoA;
+
+      const outgoing =
+        activePhoto === 'A'
+          ? photoA
+          : photoB;
+
+      incoming.src = visual.image;
+
+      incoming.onload = () => {
+        incoming.classList.add('active');
+        outgoing.classList.remove('active');
+
+        activePhoto =
+          activePhoto === 'A'
+            ? 'B'
+            : 'A';
+
+        activeMonth = monthKey;
+      };
+
+      monthLabel.textContent = visual.label;
     }
 
+    window.addEventListener('message', event => {
+      if(
+        !calendarFrame ||
+        event.source !== calendarFrame.contentWindow
+      ){
+        return;
+      }
+
+      const data = event.data;
+
+      if(
+        data &&
+        data.type === 'calendar-month-changed' &&
+        monthVisuals[data.month]
+      ){
+        setMonthVisual(data.month);
+      }
+    });
+
+    const calendarViewport =
+      document.querySelector('.calendar-viewport');
+
+    const floatingWeek =
+      document.querySelector('.floating-week');
+
+    if(
+      calendarViewport &&
+      floatingWeek
+    ){
+      calendarViewport.addEventListener(
+        'scroll',
+        () => {
+          floatingWeek.classList.toggle(
+            'show',
+            calendarViewport.scrollTop > 70
+          );
+        }
+      );
+    }
   </script>
 
 </body>
