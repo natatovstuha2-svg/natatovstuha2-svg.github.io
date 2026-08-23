@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html> 
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
@@ -176,7 +176,7 @@
 
     .hero-content{
       position:relative;
-      z-index:10;
+      z-index:20;
       height:100%;
 
       display:grid;
@@ -331,11 +331,11 @@
 
     .workspace{
       position:absolute;
-      z-index:14;
-      left:31%;
-      right:22px;
-      bottom:0;
-      height:122px;
+      z-index:12;
+      left:41%;
+      right:26px;
+      bottom:10px;
+      height:112px;
       pointer-events:none;
     }
 
@@ -343,26 +343,51 @@
       position:absolute;
       left:0;
       right:0;
-      bottom:7px;
-      height:23px;
+      bottom:0;
+      height:44px;
 
-      border:1px solid rgba(216,173,85,.34);
-      border-radius:50% 50% 10px 10px;
+      border:1px solid rgba(212,199,180,.92);
+      border-radius:18px;
 
       background:
-        linear-gradient(180deg,rgba(29,64,91,.95),rgba(7,27,47,.98));
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.98) 0%,
+          rgba(247,243,237,.98) 48%,
+          rgba(236,228,217,.98) 100%
+        );
 
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.08),
-        0 12px 20px rgba(0,0,0,.24);
+        inset 0 1px 0 rgba(255,255,255,.95),
+        inset 0 -2px 0 rgba(214,201,186,.72),
+        0 12px 22px rgba(0,0,0,.16);
+    }
+
+    .shelf::before{
+      content:"";
+      position:absolute;
+      left:10px;
+      right:10px;
+      top:7px;
+      height:12px;
+      border-radius:14px;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.82),
+          rgba(255,255,255,.12)
+        );
+
+      opacity:.78;
     }
 
     .books{
       position:absolute;
       left:3%;
-      bottom:20px;
-      width:min(310px,30vw);
-      max-height:150px;
+      bottom:24px;
+      width:min(220px,21vw);
+      max-height:106px;
       object-fit:contain;
       object-position:left bottom;
 
@@ -372,10 +397,10 @@
 
     .laptop{
       position:absolute;
-      right:2%;
-      bottom:12px;
-      width:min(390px,36vw);
-      max-height:190px;
+      right:1%;
+      bottom:18px;
+      width:min(338px,31vw);
+      max-height:158px;
       object-fit:contain;
       object-position:right bottom;
 
@@ -530,15 +555,19 @@
       }
 
       .workspace{
-        left:24%;
+        left:37%;
+        right:18px;
+        bottom:8px;
       }
 
       .books{
-        width:260px;
+        width:190px;
+        bottom:22px;
       }
 
       .laptop{
-        width:340px;
+        width:280px;
+        bottom:16px;
       }
     }
 
@@ -620,17 +649,25 @@
       }
 
       .workspace{
-        left:3%;
+        left:12%;
         right:3%;
-        height:112px;
+        bottom:6px;
+        height:90px;
+      }
+
+      .shelf{
+        height:34px;
+        border-radius:14px;
       }
 
       .books{
-        width:210px;
+        width:128px;
+        bottom:18px;
       }
 
       .laptop{
-        width:255px;
+        width:188px;
+        bottom:14px;
       }
 
       .calendar-shell{
@@ -854,18 +891,16 @@
     }
 
     window.addEventListener('message', event => {
-      if(
-        !calendarFrame ||
-        event.source !== calendarFrame.contentWindow
-      ){
-        return;
-      }
-
       const data = event.data;
 
+      // У Google Apps Script користувацька сторінка може працювати
+      // у вкладеному sandbox-iframe, тому event.source не завжди
+      // дорівнює calendarFrame.contentWindow.
+      // Приймаємо лише наш чіткий тип повідомлення та лише відомі місяці.
       if(
         data &&
         data.type === 'calendar-month-changed' &&
+        typeof data.month === 'string' &&
         monthVisuals[data.month]
       ){
         setMonthVisual(data.month);
