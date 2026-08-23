@@ -1,4 +1,4 @@
-<!DOCTYPE html>      
+<!DOCTYPE html>
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
@@ -7,21 +7,31 @@
   <title>Календар виховної роботи на 2026–2027 н. р.</title>
 
   <style>
+
+    /* =========================================================
+       ОСНОВА
+    ========================================================= */
+
     * {
       box-sizing: border-box;
     }
 
     :root {
-      --navy: #081d36;
-      --navy2: #0d2b4f;
-      --navy3: #123a66;
+      --navy-950: #041326;
+      --navy-900: #061a32;
+      --navy-850: #08213e;
+      --navy-800: #0b2b50;
+      --navy-700: #124477;
+      --blue: #1d5a99;
 
       --gold: #d9aa45;
-      --gold-light: #f3d88c;
-      --gold-dark: #9b6b18;
+      --gold-bright: #f4d984;
+      --gold-light: #f8e7ad;
+      --gold-dark: #8e6017;
 
       --white: #ffffff;
-      --soft-white: #f7f9fc;
+      --soft-white: #f8fbff;
+      --soft-blue: #eaf4ff;
 
       --crop: 220px;
     }
@@ -34,133 +44,533 @@
 
     body {
       font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-
-      color: white;
+      color: #ffffff;
 
       background:
         radial-gradient(
           circle at 10% 0%,
-          rgba(54, 112, 168, .32),
-          transparent 30%
+          rgba(75, 143, 214, .30),
+          transparent 28%
         ),
         radial-gradient(
-          circle at 92% 8%,
-          rgba(215, 169, 69, .15),
+          circle at 90% 5%,
+          rgba(239, 194, 92, .15),
           transparent 24%
+        ),
+        radial-gradient(
+          circle at 50% 110%,
+          rgba(39, 105, 175, .18),
+          transparent 35%
         ),
         linear-gradient(
           145deg,
-          #06182e 0%,
-          #0a2341 42%,
-          #071b34 100%
+          #041326 0%,
+          #08213d 43%,
+          #061830 100%
         );
 
       background-attachment: fixed;
     }
 
-    .page {
-      width: 100%;
-      padding: 24px;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.025),
+          transparent 25%
+        );
+
+      z-index: 0;
     }
 
-    /* ===============================
-       PREMIUM HEADER
-    ================================ */
+    .page {
+      position: relative;
+      z-index: 1;
+
+      width: 100%;
+      padding: 30px 24px 24px;
+    }
+
+
+    /* =========================================================
+       HERO / ШАПКА
+    ========================================================= */
 
     .hero {
       position: relative;
 
       max-width: 1580px;
-      margin: 0 auto 22px;
+      min-height: 245px;
 
-      min-height: 205px;
+      margin: 16px auto 24px;
 
       display: grid;
-      grid-template-columns: 165px 1fr 230px;
+
+      grid-template-columns:
+        165px
+        minmax(0, 1fr)
+        240px;
+
       align-items: center;
       gap: 30px;
 
-      padding: 25px 38px;
+      padding: 34px 38px 29px;
 
-      overflow: hidden;
+      overflow: visible;
+
+      border-radius: 34px;
+
+      border:
+        1px solid rgba(236, 201, 116, .48);
 
       background:
         radial-gradient(
-          circle at 82% 18%,
-          rgba(79, 132, 187, .18),
-          transparent 35%
+          circle at 15% 30%,
+          rgba(73, 139, 205, .17),
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at 82% 22%,
+          rgba(112, 164, 215, .18),
+          transparent 34%
         ),
         linear-gradient(
-          125deg,
-          rgba(11, 39, 70, .98),
-          rgba(8, 28, 52, .98)
+          130deg,
+          rgba(17, 52, 92, .96),
+          rgba(7, 27, 51, .98)
         );
 
-      border: 1px solid rgba(231, 192, 101, .55);
-      border-radius: 32px;
-
       box-shadow:
-        0 28px 70px rgba(0, 0, 0, .32),
-        inset 0 1px 0 rgba(255, 255, 255, .08);
+        0 30px 75px rgba(0,0,0,.34),
+        inset 0 1px 0 rgba(255,255,255,.09),
+        inset 0 -1px 0 rgba(255,255,255,.025);
+
+      isolation: isolate;
     }
 
-    .hero::before {
-      content: "";
 
+    /* скляна внутрішня площина */
+
+    .hero-glass {
       position: absolute;
-      left: 5%;
+      inset: 12px;
+
+      border-radius: 27px;
+
+      border:
+        1px solid rgba(255,255,255,.075);
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.045),
+          rgba(255,255,255,.012)
+        );
+
+      pointer-events: none;
+      z-index: 0;
+    }
+
+
+    /* верхній золотий відблиск */
+
+    .hero-top-line {
+      position: absolute;
+
       top: 0;
+      left: 5%;
 
       width: 90%;
       height: 3px;
+
+      border-radius: 999px;
 
       background:
         linear-gradient(
           90deg,
           transparent,
-          #bd8628,
-          #f3d98d,
-          #bd8628,
+          #af7620,
+          #f9e8ac,
+          #d39e38,
           transparent
         );
 
       box-shadow:
-        0 0 16px rgba(240, 204, 112, .42);
+        0 0 18px rgba(240, 204, 112, .35);
+
+      pointer-events: none;
+      z-index: 2;
     }
 
-    .hero::after {
+
+    /* =========================================================
+       ЗОЛОТІ КІЛЬЦЯ КАЛЕНДАРЯ
+    ========================================================= */
+
+    .calendar-binding {
+      position: absolute;
+
+      top: -24px;
+      left: 50%;
+
+      width: 76%;
+
+      transform: translateX(-50%);
+
+      display: flex;
+      justify-content: space-between;
+
+      z-index: 10;
+
+      pointer-events: none;
+    }
+
+
+    .binding-unit {
+      position: relative;
+
+      width: 34px;
+      height: 58px;
+    }
+
+
+    /* отвір у календарі */
+
+    .binding-unit::before {
       content: "";
 
       position: absolute;
 
-      width: 420px;
-      height: 420px;
+      left: 50%;
+      bottom: 2px;
 
-      right: -150px;
-      top: -220px;
+      width: 19px;
+      height: 10px;
+
+      transform: translateX(-50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          ellipse,
+          #020c17 0%,
+          #06182d 50%,
+          #284a70 72%,
+          #d3a54c 78%,
+          #f1d47f 100%
+        );
+
+      box-shadow:
+        inset 0 2px 4px rgba(0,0,0,.75),
+        0 1px 0 rgba(255,255,255,.15);
+    }
+
+
+    /* металеве кільце */
+
+    .ring {
+      position: absolute;
+
+      left: 50%;
+      top: 0;
+
+      width: 21px;
+      height: 48px;
+
+      transform: translateX(-50%);
+
+      border: 5px solid transparent;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          100deg,
+          #765011 0%,
+          #c58d28 15%,
+          #fff0b1 35%,
+          #e4b64d 55%,
+          #986418 74%,
+          #f5d77f 90%,
+          #815410 100%
+        )
+        border-box;
+
+      mask:
+        linear-gradient(#000 0 0) padding-box,
+        linear-gradient(#000 0 0);
+
+      -webkit-mask:
+        linear-gradient(#000 0 0) padding-box,
+        linear-gradient(#000 0 0);
+
+      mask-composite: exclude;
+      -webkit-mask-composite: xor;
+
+      filter:
+        drop-shadow(0 4px 2px rgba(0,0,0,.27))
+        drop-shadow(0 0 5px rgba(241,204,111,.15));
+
+      animation:
+        bindingGlow 7s ease-in-out infinite;
+    }
+
+
+    @keyframes bindingGlow {
+
+      0%,
+      100% {
+        filter:
+          drop-shadow(0 4px 2px rgba(0,0,0,.27))
+          drop-shadow(0 0 4px rgba(241,204,111,.12));
+      }
+
+      50% {
+        filter:
+          drop-shadow(0 4px 2px rgba(0,0,0,.28))
+          drop-shadow(0 0 9px rgba(248,218,142,.25));
+      }
+
+    }
+
+
+    /* =========================================================
+       ДЕКОРАТИВНЕ СВІТЛО
+    ========================================================= */
+
+    .hero-light-left {
+      position: absolute;
+
+      left: 15%;
+      bottom: -45px;
+
+      width: 370px;
+      height: 180px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(132, 196, 255, .16),
+          transparent 70%
+        );
+
+      filter: blur(12px);
+
+      pointer-events: none;
+      z-index: 0;
+    }
+
+
+    .hero-light-right {
+      position: absolute;
+
+      right: -120px;
+      top: -120px;
+
+      width: 410px;
+      height: 410px;
 
       border-radius: 50%;
 
       background:
         radial-gradient(
           circle,
-          rgba(241, 206, 125, .13),
-          transparent 68%
+          rgba(246, 212, 126, .13),
+          transparent 69%
         );
+
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* ===============================
-       LOGO
-    ================================ */
+
+    /* =========================================================
+       СЕЗОННІ ЧАСТИНКИ
+    ========================================================= */
+
+    .particles {
+      position: absolute;
+
+      inset: 0;
+
+      overflow: hidden;
+      border-radius: 34px;
+
+      pointer-events: none;
+
+      z-index: 1;
+    }
+
+
+    .particle {
+      position: absolute;
+
+      bottom: -40px;
+
+      opacity: 0;
+
+      animation:
+        seasonalFloat var(--duration) linear infinite;
+
+      animation-delay:
+        var(--delay);
+
+      will-change:
+        transform,
+        opacity;
+    }
+
+
+    @keyframes seasonalFloat {
+
+      0% {
+        opacity: 0;
+
+        transform:
+          translate3d(0,0,0)
+          rotate(var(--rotation))
+          scale(var(--scale));
+      }
+
+      12% {
+        opacity: .55;
+      }
+
+      80% {
+        opacity: .45;
+      }
+
+      100% {
+        opacity: 0;
+
+        transform:
+          translate3d(
+            var(--drift),
+            -310px,
+            0
+          )
+          rotate(
+            calc(var(--rotation) + 150deg)
+          )
+          scale(var(--scale));
+      }
+
+    }
+
+
+    /* ОСІНЬ */
+
+    body.season-autumn .particle {
+
+      width: 13px;
+      height: 20px;
+
+      border-radius:
+        70% 15% 70% 15%;
+
+      background:
+        linear-gradient(
+          145deg,
+          #ffe496 0%,
+          #f5bd4e 45%,
+          #d7811f 78%,
+          #ae5914 100%
+        );
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.36),
+        0 0 12px rgba(255,189,73,.13);
+    }
+
+
+    /* ЗИМА */
+
+    body.season-winter .particle {
+
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          #ffffff 0%,
+          #dff1ff 54%,
+          #a9d4ff 100%
+        );
+
+      box-shadow:
+        0 0 12px rgba(210,235,255,.42);
+    }
+
+
+    /* ВЕСНА */
+
+    body.season-spring .particle {
+
+      width: 13px;
+      height: 13px;
+
+      border-radius:
+        55% 55% 55% 8%;
+
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #ffe4ed
+        );
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.9),
+        0 0 10px rgba(255,222,235,.30);
+    }
+
+
+    /* ЛІТО */
+
+    body.season-summer .particle {
+
+      width: 9px;
+      height: 9px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          #fff9d7 0%,
+          #f4dc87 58%,
+          rgba(244,220,135,.2) 100%
+        );
+
+      box-shadow:
+        0 0 14px rgba(255,224,134,.28);
+    }
+
+
+    /* =========================================================
+       ЛОГОТИП
+    ========================================================= */
 
     .logo-wrap {
       position: relative;
-      z-index: 2;
+
+      z-index: 4;
 
       width: 150px;
       height: 150px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -168,125 +578,368 @@
 
       background:
         radial-gradient(
-          circle at 40% 25%,
-          rgba(255,255,255,.13),
-          rgba(255,255,255,.02)
+          circle at 35% 24%,
+          rgba(255,255,255,.21),
+          rgba(255,255,255,.035)
         );
 
-      border: 3px solid #d9aa45;
+      border:
+        3px solid var(--gold);
 
       box-shadow:
-        inset 0 0 25px rgba(255,255,255,.04),
-        0 14px 30px rgba(0,0,0,.20);
+        inset 0 0 30px rgba(255,255,255,.04),
+        0 16px 34px rgba(0,0,0,.23),
+        0 0 13px rgba(217,170,69,.15);
+
+      transition:
+        transform .45s ease,
+        box-shadow .45s ease;
+
+      animation:
+        logoGoldenBreath 5.5s ease-in-out infinite;
     }
 
+
+    /* друге тонке золоте кільце */
+
+    .logo-wrap::before {
+      content: "";
+
+      position: absolute;
+
+      inset: -8px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid rgba(247,220,148,.37);
+
+      box-shadow:
+        0 0 12px rgba(232,185,82,.12),
+        inset 0 0 8px rgba(255,255,255,.07);
+
+      pointer-events: none;
+    }
+
+
+    /* рухомий золотий відблиск */
+
+    .logo-wrap::after {
+      content: "";
+
+      position: absolute;
+
+      inset: -6px;
+
+      border-radius: 50%;
+
+      background:
+        conic-gradient(
+          from 0deg,
+
+          transparent 0deg,
+          transparent 300deg,
+
+          rgba(255,245,205,0) 320deg,
+
+          rgba(255,250,223,.92) 340deg,
+
+          rgba(255,223,135,.42) 350deg,
+
+          transparent 360deg
+        );
+
+      -webkit-mask:
+        radial-gradient(
+          farthest-side,
+          transparent calc(100% - 7px),
+          #000 calc(100% - 6px)
+        );
+
+      mask:
+        radial-gradient(
+          farthest-side,
+          transparent calc(100% - 7px),
+          #000 calc(100% - 6px)
+        );
+
+      animation:
+        goldRingShine 9s linear infinite;
+
+      pointer-events: none;
+    }
+
+
+    @keyframes goldRingShine {
+
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+
+    }
+
+
+    @keyframes logoGoldenBreath {
+
+      0%,
+      100% {
+
+        box-shadow:
+          inset 0 0 30px rgba(255,255,255,.04),
+          0 16px 34px rgba(0,0,0,.23),
+          0 0 9px rgba(217,170,69,.11);
+
+      }
+
+      50% {
+
+        box-shadow:
+          inset 0 0 30px rgba(255,255,255,.06),
+          0 16px 34px rgba(0,0,0,.23),
+          0 0 22px rgba(239,199,104,.23);
+
+      }
+
+    }
+
+
     .logo-wrap img {
+
       width: 142px;
       height: 142px;
+
       object-fit: contain;
+
       border-radius: 50%;
+
       background: #ffffff;
 
       filter:
-        drop-shadow(0 15px 17px rgba(0,0,0,.34))
-        drop-shadow(0 0 10px rgba(230,193,105,.12));
+        drop-shadow(
+          0 14px 18px rgba(0,0,0,.34)
+        );
+
     }
 
-    /* ===============================
-       TITLES
-    ================================ */
+
+    @media (hover:hover) {
+
+      .logo-wrap:hover {
+
+        transform:
+          translateY(-3px)
+          scale(1.015);
+
+        box-shadow:
+          inset 0 0 30px rgba(255,255,255,.07),
+          0 20px 38px rgba(0,0,0,.26),
+          0 0 25px rgba(239,199,104,.29);
+
+      }
+
+    }
+
+
+    /* =========================================================
+       ТЕКСТ ШАПКИ
+    ========================================================= */
 
     .main-info {
       position: relative;
-      z-index: 2;
+      z-index: 4;
+      min-width: 0;
     }
 
+
     .school-name {
+
       margin: 0 0 9px;
 
-      color: var(--gold-light);
+      color:
+        var(--gold-light);
 
       font-size: 13px;
+
       font-weight: 800;
 
       letter-spacing: 2.2px;
+
       text-transform: uppercase;
 
       text-shadow:
         0 2px 7px rgba(0,0,0,.25);
+
     }
 
+
     h1 {
+
       margin: 0;
 
       max-width: 900px;
 
-      color: white;
+      color: #ffffff;
 
-      font-size: clamp(35px, 3.8vw, 55px);
+      font-size:
+        clamp(
+          35px,
+          3.7vw,
+          55px
+        );
+
       line-height: 1.04;
 
       font-weight: 800;
+
       letter-spacing: -1.5px;
 
       text-shadow:
-        0 6px 18px rgba(0,0,0,.22);
+        0 7px 20px rgba(0,0,0,.25);
+
     }
 
+
     h1 span {
+
       display: block;
 
       margin-top: 5px;
 
-      color: #c8ddf1;
+      color: #d2e4f5;
 
       font-size: .68em;
-      font-weight: 600;
-      letter-spacing: -.4px;
+
+      font-weight: 650;
+
+      letter-spacing: -.35px;
+
     }
 
+
     .author {
-      margin-top: 17px;
+
+      margin-top: 18px;
 
       display: flex;
+
       flex-wrap: wrap;
+
       align-items: center;
+
       gap: 9px;
 
       color: #aebfd2;
 
       font-size: 16px;
+
     }
+
 
     .author strong {
+
       color: white;
+
       font-weight: 750;
+
     }
 
+
     .author-dot {
+
       width: 6px;
       height: 6px;
 
       display: inline-block;
 
-      background: var(--gold);
+      background:
+        var(--gold);
+
       border-radius: 50%;
 
       box-shadow:
         0 0 8px rgba(222,174,72,.65);
+
     }
 
-    /* ===============================
-       3D GOLD YEAR CARD
-    ================================ */
+
+    .season-pill {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      margin-left: 5px;
+
+      padding:
+        7px 12px;
+
+      border-radius: 999px;
+
+      color: #e9f4ff;
+
+      font-size: 11px;
+
+      font-weight: 750;
+
+      letter-spacing: .6px;
+
+      text-transform: uppercase;
+
+      border:
+        1px solid rgba(255,255,255,.12);
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.09),
+          rgba(255,255,255,.035)
+        );
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.11);
+
+    }
+
+
+    .season-pill::before {
+
+      content: "";
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          #fff1b5,
+          #d29a32
+        );
+
+      box-shadow:
+        0 0 8px rgba(244,205,107,.30);
+
+    }
+
+
+    /* =========================================================
+       КАРТКА РОКУ
+    ========================================================= */
 
     .year-card {
+
       position: relative;
-      z-index: 2;
+      z-index: 4;
 
       min-width: 220px;
 
-      padding: 22px 25px;
+      padding: 23px 24px;
 
       text-align: center;
 
@@ -295,35 +948,69 @@
       background:
         linear-gradient(
           145deg,
-          #fff5cf 0%,
-          #e3b957 38%,
-          #f5da8c 60%,
-          #bc8528 100%
+
+          #fff6d2 0%,
+
+          #eac15f 34%,
+
+          #f7dfa0 57%,
+
+          #b77c20 100%
         );
 
       border:
-        1px solid rgba(255, 236, 179, .95);
+        1px solid rgba(255,237,184,.96);
 
-      border-radius: 22px;
+      border-radius: 24px;
 
       box-shadow:
-        inset 0 2px 2px rgba(255,255,255,.85),
+        inset 0 2px 2px rgba(255,255,255,.88),
         inset 0 -4px 9px rgba(127,80,12,.18),
-        0 10px 0 #8c611c,
-        0 20px 30px rgba(0,0,0,.25);
+        0 9px 0 #875b17,
+        0 21px 31px rgba(0,0,0,.25);
+
     }
 
+
+    .year-card::before {
+
+      content: "";
+
+      position: absolute;
+
+      left: 8%;
+      right: 8%;
+      top: 5px;
+
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.85),
+          transparent
+        );
+
+    }
+
+
     .year-card strong {
+
       display: block;
 
-      font-size: 25px;
+      font-size: 27px;
+
       font-weight: 850;
 
       text-shadow:
         0 1px 0 rgba(255,255,255,.65);
+
     }
 
+
     .year-card span {
+
       display: block;
 
       margin-top: 5px;
@@ -331,17 +1018,41 @@
       color: #5a461d;
 
       font-size: 13px;
+
       font-weight: 650;
+
     }
 
-    /* ===============================
-       WHITE CALENDAR
-    ================================ */
+
+    .year-card small {
+
+      display: block;
+
+      margin-top: 9px;
+
+      color: #735a29;
+
+      font-size: 10px;
+
+      font-weight: 750;
+
+      letter-spacing: .7px;
+
+      text-transform: uppercase;
+
+    }
+
+
+    /* =========================================================
+       ОБОЛОНКА КАЛЕНДАРЯ
+    ========================================================= */
 
     .calendar-shell {
+
       position: relative;
 
       max-width: 1580px;
+
       margin: 0 auto;
 
       padding: 8px;
@@ -349,252 +1060,746 @@
       background:
         linear-gradient(
           135deg,
-          #f7e2a5,
-          #b97c18,
-          #f5dc96,
-          #a56e16
+
+          #f8e6ab 0%,
+
+          #c48a25 22%,
+
+          #f8e2a0 48%,
+
+          #a86e18 73%,
+
+          #edd08a 100%
         );
 
-      border-radius: 32px;
+      border-radius: 34px;
 
       box-shadow:
-        0 30px 80px rgba(0,0,0,.35),
+        0 32px 85px rgba(0,0,0,.36),
         0 0 0 1px rgba(255,220,137,.16);
+
     }
 
+
     .calendar-white {
+
       position: relative;
+
       overflow: hidden;
+
+      background:
+        linear-gradient(
+          180deg,
+          #ffffff,
+          #fbfdff
+        );
+
+      border-radius: 26px;
+
+      box-shadow:
+        inset 0 0 0 1px rgba(208,220,233,.82);
+
+    }
+
+
+    /* =========================================================
+       ВЕРХНЯ ПАНЕЛЬ КАЛЕНДАРЯ
+    ========================================================= */
+
+    .calendar-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 14px;
+
+      padding:
+        16px 27px 14px;
+
+      color: #102e50;
+
+      background:
+        linear-gradient(
+          180deg,
+          #f5faff,
+          #ffffff
+        );
+
+      border-bottom:
+        1px solid rgba(197,213,231,.85);
+
+    }
+
+
+    .calendar-header-title {
+
+      min-width: 0;
+
+    }
+
+
+    .calendar-header-title strong {
+
+      display: block;
+
+      color: #12375f;
+
+      font-size: 17px;
+
+      font-weight: 800;
+
+    }
+
+
+    .calendar-header-title span {
+
+      display: block;
+
+      margin-top: 3px;
+
+      color: #768ba0;
+
+      font-size: 12px;
+
+      font-weight: 600;
+
+    }
+
+
+    .calendar-status {
+
+      flex-shrink: 0;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      padding: 8px 13px;
+
+      border-radius: 999px;
+
+      color: #234d79;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      letter-spacing: .5px;
+
+      text-transform: uppercase;
+
+      background:
+        linear-gradient(
+          180deg,
+          #ffffff,
+          #eef6ff
+        );
+
+      border:
+        1px solid rgba(184,205,226,.92);
+
+      box-shadow:
+        0 6px 14px rgba(11,45,80,.07),
+        inset 0 1px 0 #fff;
+
+    }
+
+
+    .calendar-status::before {
+
+      content: "";
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          #f8d975,
+          #c9861e
+        );
+
+      box-shadow:
+        0 0 9px rgba(220,161,48,.28);
+
+    }
+
+
+    /* =========================================================
+       ПЛАШКИ ДНІВ ТИЖНЯ
+    ========================================================= */
+
+    .floating-week {
+
+      position: absolute;
+
+      top: 67px;
+      left: 0;
+      right: 0;
+
+      z-index: 80;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          7,
+          1fr
+        );
+
+      gap: 9px;
+
+      padding:
+        11px 27px 14px;
+
+      background:
+        rgba(248,252,255,.92);
+
+      backdrop-filter:
+        blur(12px);
+
+      border-bottom:
+        1px solid rgba(201,216,232,.86);
+
+      box-shadow:
+        0 9px 20px rgba(8,29,54,.11);
+
+      opacity: 0;
+
+      transform:
+        translateY(-8px);
+
+      pointer-events: none;
+
+      transition:
+        .22s ease;
+
+    }
+
+
+    .floating-week.show {
+
+      opacity: 1;
+
+      transform:
+        translateY(0);
+
+    }
+
+
+    .floating-week div {
+
+      text-align: center;
+
+      color: #f4f9ff;
+
+      font-size: 13px;
+
+      font-weight: 850;
+
+      letter-spacing: .3px;
+
+      padding:
+        10px 4px 9px;
+
+      border-radius: 13px;
+
+      border:
+        1px solid rgba(255,255,255,.14);
+
+      background:
+        linear-gradient(
+          180deg,
+
+          #3370ad 0%,
+
+          #20558b 44%,
+
+          #153e68 76%,
+
+          #102f50 100%
+        );
+
+      box-shadow:
+        inset 0 2px 1px rgba(255,255,255,.19),
+        inset 0 -3px 8px rgba(4,18,35,.25),
+        0 5px 0 #0b233e,
+        0 11px 18px rgba(9,38,67,.13);
+
+      text-shadow:
+        0 1px 2px rgba(0,0,0,.28);
+
+    }
+
+
+    /* вихідні трохи відрізняються */
+
+    .floating-week div:nth-child(6),
+    .floating-week div:nth-child(7) {
+
+      background:
+        linear-gradient(
+          180deg,
+
+          #477db5 0%,
+
+          #2d6095 45%,
+
+          #1b466f 76%,
+
+          #133658 100%
+        );
+
+    }
+
+
+    /* =========================================================
+       ВБУДОВАНИЙ GOOGLE-КАЛЕНДАР
+    ========================================================= */
+
+    .calendar-viewport {
+
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      height: 760px;
 
       background: white;
 
-      border-radius: 25px;
-
-      box-shadow:
-        inset 0 0 0 1px rgba(208,220,233,.8);
     }
-    .floating-week{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  z-index:80;
 
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:8px;
-
-  padding:10px 28px 12px;
-
-  background:rgba(255,255,255,.97);
-
-  border-bottom:1px solid rgba(217,170,69,.45);
-
-  box-shadow:0 8px 18px rgba(8,29,54,.12);
-
-  opacity:0;
-  transform:translateY(-8px);
-  pointer-events:none;
-
-  transition:.2s ease;
-}
-
-.floating-week.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.floating-week div{
-  text-align:center;
-  color:#0b2b4f;
-  font-size:13px;
-  font-weight:800;
-
-  padding:9px 4px 8px;
-
-  border-radius:11px;
-  border:1px solid #f7e2a1;
-
-  background:
-    linear-gradient(
-      145deg,
-      #fff5cf 0%,
-      #e3b957 40%,
-      #f4d987 65%,
-      #b67b1d 100%
-    );
-
-  box-shadow:
-    inset 0 2px 2px rgba(255,255,255,.9),
-    inset 0 -3px 6px rgba(115,72,8,.18),
-    0 4px 0 #936215;
-}
-
-    /*
-      Ховаємо повторну верхню шапку
-      Google-календаря.
-    */
-
-    .calendar-viewport {
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 720px;
-
-  background: white;
-}
 
     iframe {
+
       position: relative;
 
-      top: calc(var(--crop) * -1);
+      top:
+        calc(
+          var(--crop) * -1
+        );
 
       width: 100%;
-      height: calc(1150px + var(--crop));
+
+      height:
+        calc(
+          1180px + var(--crop)
+        );
 
       display: block;
 
       border: 0;
 
       background: white;
+
     }
 
-    /* ===============================
+
+    /* =========================================================
        FOOTER
-    ================================ */
+    ========================================================= */
 
     .footer-link {
+
       max-width: 1580px;
 
-      margin: 16px auto 5px;
+      margin:
+        17px auto 5px;
 
       text-align: center;
 
-      color: #8298af;
+      color: #93abc1;
 
       font-size: 13px;
+
     }
 
+
     .footer-link a {
-      color: var(--gold-light);
+
+      color:
+        var(--gold-light);
 
       font-weight: 700;
 
       text-decoration: none;
+
+      transition:
+        color .2s ease;
+
     }
+
 
     .footer-link a:hover {
-      color: white;
+
+      color: #ffffff;
+
     }
 
-    /* ===============================
-       MOBILE
-    ================================ */
 
-    @media (max-width: 950px) {
+    /* =========================================================
+       АДАПТИВ
+    ========================================================= */
+
+    @media (max-width: 1050px) {
 
       .hero {
-        grid-template-columns: 125px 1fr;
 
-        padding: 24px;
+        grid-template-columns:
+          130px
+          minmax(0,1fr);
+
       }
 
-      .logo-wrap {
-        width: 120px;
-        height: 120px;
-      }
-
-      .logo-wrap img {
-        width: 115px;
-        height: 115px;
-      }
 
       .year-card {
-        grid-column: 1 / -1;
+
+        grid-column:
+          1 / -1;
 
         width: 100%;
 
-        box-shadow:
-          inset 0 2px 2px rgba(255,255,255,.85),
-          inset 0 -3px 8px rgba(127,80,12,.16),
-          0 7px 0 #8c611c,
-          0 16px 25px rgba(0,0,0,.20);
       }
+
+
+      .calendar-binding {
+
+        width: 84%;
+
+      }
+
     }
+
+
+    @media (max-width: 750px) {
+
+      .calendar-binding {
+
+        width: 88%;
+
+      }
+
+
+      .binding-unit {
+
+        width: 26px;
+
+      }
+
+
+      .ring {
+
+        width: 18px;
+        height: 43px;
+
+      }
+
+    }
+
 
     @media (max-width: 650px) {
 
       :root {
+
         --crop: 265px;
+
       }
+
 
       .page {
-        padding: 10px;
+
+        padding:
+          28px 10px 10px;
+
       }
 
+
       .hero {
+
         grid-template-columns: 1fr;
 
-        gap: 12px;
+        gap: 14px;
 
-        padding: 20px 17px;
+        padding:
+          24px 17px 20px;
 
         text-align: center;
 
         border-radius: 24px;
+
       }
+
+
+      .calendar-binding {
+
+        top: -22px;
+
+        width: 90%;
+
+      }
+
+
+      .binding-unit:nth-child(even) {
+
+        display: none;
+
+      }
+
 
       .logo-wrap {
+
         margin: 0 auto;
+
+        width: 122px;
+        height: 122px;
+
       }
+
+
+      .logo-wrap img {
+
+        width: 115px;
+        height: 115px;
+
+      }
+
 
       .school-name {
+
         font-size: 11px;
-        letter-spacing: 1.4px;
+
+        letter-spacing: 1.3px;
+
       }
+
 
       h1 {
+
         font-size: 31px;
+
       }
 
+
       .author {
+
         justify-content: center;
 
         font-size: 14px;
+
       }
 
+
+      .season-pill {
+
+        margin-left: 0;
+
+      }
+
+
       .calendar-shell {
+
         padding: 5px;
 
         border-radius: 24px;
+
       }
+
 
       .calendar-white {
+
         border-radius: 19px;
+
       }
+
+
+      .calendar-header {
+
+        padding:
+          13px 13px 11px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+      }
+
+
+      .calendar-status {
+
+        font-size: 10px;
+
+      }
+
+
+      .floating-week {
+
+        top: 93px;
+
+        gap: 5px;
+
+        padding:
+          9px 10px 12px;
+
+      }
+
+
+      .floating-week div {
+
+        padding:
+          8px 2px 7px;
+
+        font-size: 10px;
+
+        border-radius: 9px;
+
+        box-shadow:
+          inset 0 2px 1px rgba(255,255,255,.17),
+          inset 0 -2px 5px rgba(4,18,35,.22),
+          0 3px 0 #0b233e;
+
+      }
+
 
       .calendar-viewport {
+
         height: 1300px;
+
       }
 
+
       iframe {
-        height: calc(1300px + var(--crop));
+
+        height:
+          calc(
+            1300px + var(--crop)
+          );
+
       }
+
     }
+
+
+    /* =========================================================
+       МЕНШЕ АНІМАЦІЇ ДЛЯ КОРИСТУВАЧІВ,
+       ЯКІ ЇЇ ВИМКНУЛИ
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+
+        animation-duration:
+          .001ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          .001ms !important;
+
+      }
+
+    }
+
   </style>
 </head>
+
 
 <body>
 
   <main class="page">
 
+
+    <!-- =====================================================
+         ШАПКА
+    ====================================================== -->
+
     <section class="hero">
 
+
+      <!-- Золоті кільця календаря -->
+
+      <div
+        class="calendar-binding"
+        aria-hidden="true"
+      >
+
+        <div class="binding-unit">
+          <span class="ring"></span>
+        </div>
+
+        <div class="binding-unit">
+          <span class="ring"></span>
+        </div>
+
+        <div class="binding-unit">
+          <span class="ring"></span>
+        </div>
+
+        <div class="binding-unit">
+          <span class="ring"></span>
+        </div>
+
+        <div class="binding-unit">
+          <span class="ring"></span>
+        </div>
+
+        <div class="binding-unit">
+          <span class="ring"></span>
+        </div>
+
+        <div class="binding-unit">
+          <span class="ring"></span>
+        </div>
+
+        <div class="binding-unit">
+          <span class="ring"></span>
+        </div>
+
+        <div class="binding-unit">
+          <span class="ring"></span>
+        </div>
+
+      </div>
+
+
+      <div class="hero-glass"></div>
+
+      <div class="hero-top-line"></div>
+
+      <div class="hero-light-left"></div>
+
+      <div class="hero-light-right"></div>
+
+
+      <!-- сезонна анімація -->
+
+      <div
+        class="particles"
+        id="particles"
+      ></div>
+
+
+      <!-- логотип -->
+
       <div class="logo-wrap">
+
         <img
           src="logo.png"
           alt="Логотип Львівського ліцею"
         >
+
       </div>
+
+
+      <!-- текст -->
 
       <div class="main-info">
 
@@ -602,10 +1807,17 @@
           Львівський ліцей Тягинської сільської ради
         </p>
 
+
         <h1>
+
           Календар виховної роботи
-          <span>на 2026–2027 н. р.</span>
+
+          <span>
+            на 2026–2027 н. р.
+          </span>
+
         </h1>
+
 
         <div class="author">
 
@@ -619,30 +1831,98 @@
             Н. С. Товстуха
           </strong>
 
+          <span class="season-pill" id="seasonLabel">
+            сезон
+          </span>
+
         </div>
 
       </div>
 
+
+      <!-- навчальний рік -->
+
       <div class="year-card">
-        <strong>2026 / 2027</strong>
-        <span>серпень — червень</span>
+
+        <strong>
+          2026 / 2027
+        </strong>
+
+        <span>
+          серпень — червень
+        </span>
+
+        <small id="seasonMini">
+          сезонне оформлення
+        </small>
+
       </div>
 
     </section>
 
 
+
+    <!-- =====================================================
+         КАЛЕНДАР
+    ====================================================== -->
+
     <section class="calendar-shell">
 
       <div class="calendar-white">
-<div class="floating-week">
-  <div>Пн</div>
-  <div>Вт</div>
-  <div>Ср</div>
-  <div>Чт</div>
-  <div>Пт</div>
-  <div>Сб</div>
-  <div>Нд</div>
-</div>
+
+
+        <!-- верхня маленька панель -->
+
+        <div class="calendar-header">
+
+          <div class="calendar-header-title">
+
+            <strong>
+              Інтерактивний календар заходів
+            </strong>
+
+            <span>
+              Львівський ліцей · 2026–2027 навчальний рік
+            </span>
+
+          </div>
+
+
+          <div
+            class="calendar-status"
+            id="calendarStatus"
+          >
+
+            сезонне оформлення
+
+          </div>
+
+        </div>
+
+
+        <!-- закріплений рядок днів -->
+
+        <div class="floating-week">
+
+          <div>Пн</div>
+
+          <div>Вт</div>
+
+          <div>Ср</div>
+
+          <div>Чт</div>
+
+          <div>Пт</div>
+
+          <div>Сб</div>
+
+          <div>Нд</div>
+
+        </div>
+
+
+        <!-- Google Apps Script -->
+
         <div class="calendar-viewport">
 
           <iframe
@@ -657,6 +1937,11 @@
     </section>
 
 
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
     <div class="footer-link">
 
       Якщо календар не відобразився —
@@ -664,26 +1949,330 @@
       <a
         href="https://script.google.com/macros/s/AKfycbxRlRohLBMEcZtJ0us4-jPMLC62y64uETmdiLMs3EHJdqRXhur6BSACEXWVGcnBFIp-eg/exec"
         target="_blank"
+        rel="noopener noreferrer"
       >
         відкрити окремо
       </a>
 
     </div>
 
-  </main>
-<script>
-  const calendarViewport = document.querySelector('.calendar-viewport');
-  const floatingWeek = document.querySelector('.floating-week');
 
-  if (calendarViewport && floatingWeek) {
-    calendarViewport.addEventListener('scroll', function () {
-      if (calendarViewport.scrollTop > 70) {
-        floatingWeek.classList.add('show');
-      } else {
-        floatingWeek.classList.remove('show');
+  </main>
+
+
+
+  <script>
+
+    /* =====================================================
+       ЛИПКА ПАНЕЛЬ ДНІВ ТИЖНЯ
+    ====================================================== */
+
+    const calendarViewport =
+      document.querySelector(
+        '.calendar-viewport'
+      );
+
+    const floatingWeek =
+      document.querySelector(
+        '.floating-week'
+      );
+
+
+    if (
+      calendarViewport &&
+      floatingWeek
+    ) {
+
+      calendarViewport.addEventListener(
+        'scroll',
+        function () {
+
+          if (
+            calendarViewport.scrollTop > 65
+          ) {
+
+            floatingWeek.classList.add(
+              'show'
+            );
+
+          } else {
+
+            floatingWeek.classList.remove(
+              'show'
+            );
+
+          }
+
+        }
+      );
+
+    }
+
+
+
+    /* =====================================================
+       АВТОМАТИЧНЕ ВИЗНАЧЕННЯ СЕЗОНУ
+    ====================================================== */
+
+    const currentMonth =
+      new Date().getMonth() + 1;
+
+
+    let season = 'summer';
+
+
+    if (
+      currentMonth >= 9 &&
+      currentMonth <= 11
+    ) {
+
+      season = 'autumn';
+
+    }
+
+    else if (
+      currentMonth === 12 ||
+      currentMonth === 1 ||
+      currentMonth === 2
+    ) {
+
+      season = 'winter';
+
+    }
+
+    else if (
+      currentMonth >= 3 &&
+      currentMonth <= 5
+    ) {
+
+      season = 'spring';
+
+    }
+
+    else {
+
+      season = 'summer';
+
+    }
+
+
+
+    const seasons = {
+
+      autumn: {
+
+        label:
+          'Осінній сезон',
+
+        mini:
+          'золоте листя',
+
+        status:
+          'осіннє оформлення'
+
+      },
+
+
+      winter: {
+
+        label:
+          'Зимовий сезон',
+
+        mini:
+          'легкий сніг',
+
+        status:
+          'зимове оформлення'
+
+      },
+
+
+      spring: {
+
+        label:
+          'Весняний сезон',
+
+        mini:
+          'білий цвіт',
+
+        status:
+          'весняне оформлення'
+
+      },
+
+
+      summer: {
+
+        label:
+          'Літній сезон',
+
+        mini:
+          'сонячне сяйво',
+
+        status:
+          'літнє оформлення'
+
       }
-    });
-  }
-</script>
+
+    };
+
+
+    document.body.classList.add(
+      'season-' + season
+    );
+
+
+    const seasonLabel =
+      document.getElementById(
+        'seasonLabel'
+      );
+
+
+    const seasonMini =
+      document.getElementById(
+        'seasonMini'
+      );
+
+
+    const calendarStatus =
+      document.getElementById(
+        'calendarStatus'
+      );
+
+
+    if (seasonLabel) {
+
+      seasonLabel.textContent =
+        seasons[season].label;
+
+    }
+
+
+    if (seasonMini) {
+
+      seasonMini.textContent =
+        seasons[season].mini;
+
+    }
+
+
+    if (calendarStatus) {
+
+      calendarStatus.textContent =
+        seasons[season].status;
+
+    }
+
+
+
+    /* =====================================================
+       СЕЗОННІ ЧАСТИНКИ
+    ====================================================== */
+
+    const particlesContainer =
+      document.getElementById(
+        'particles'
+      );
+
+
+    if (particlesContainer) {
+
+      const amount =
+        season === 'winter'
+          ? 22
+          : season === 'spring'
+            ? 18
+            : season === 'autumn'
+              ? 18
+              : 13;
+
+
+      for (
+        let i = 0;
+        i < amount;
+        i++
+      ) {
+
+        const particle =
+          document.createElement(
+            'span'
+          );
+
+
+        particle.className =
+          'particle';
+
+
+        const left =
+          Math.random() * 100;
+
+
+        const duration =
+          10 + Math.random() * 10;
+
+
+        const delay =
+          -(Math.random() * 12);
+
+
+        const drift =
+          -55 + Math.random() * 110;
+
+
+        const rotation =
+          Math.floor(
+            Math.random() * 360
+          );
+
+
+        const scale =
+          .65 +
+          Math.random() * .9;
+
+
+        particle.style.left =
+          left + '%';
+
+
+        particle.style.setProperty(
+          '--duration',
+          duration + 's'
+        );
+
+
+        particle.style.setProperty(
+          '--delay',
+          delay + 's'
+        );
+
+
+        particle.style.setProperty(
+          '--drift',
+          drift + 'px'
+        );
+
+
+        particle.style.setProperty(
+          '--rotation',
+          rotation + 'deg'
+        );
+
+
+        particle.style.setProperty(
+          '--scale',
+          scale
+        );
+
+
+        particlesContainer.appendChild(
+          particle
+        );
+
+      }
+
+    }
+
+  </script>
+
 </body>
 </html>
