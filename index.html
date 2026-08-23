@@ -415,6 +415,153 @@
         drop-shadow(0 18px 24px rgba(0,0,0,.24));
     }
 
+
+
+    /* =====================================
+       MONTH-SPECIFIC PHOTO FX
+       only inside the landscape window
+    ====================================== */
+
+    .photo-fx{
+      position:absolute;
+      inset:0;
+      z-index:5;
+      overflow:hidden;
+      pointer-events:none;
+    }
+
+    .fx-piece{
+      position:absolute;
+      will-change:transform,opacity;
+      pointer-events:none;
+    }
+
+    /* Leaves */
+    .leaf{
+      top:-12%;
+      width:18px;
+      height:12px;
+      opacity:.92;
+
+      background:
+        radial-gradient(circle at 30% 32%, rgba(255,255,255,.24), transparent 42%),
+        linear-gradient(135deg, #d8b441 0%, #bfe06d 100%);
+
+      border-radius:85% 10% 85% 10%;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.10),
+        0 2px 5px rgba(0,0,0,.12);
+
+      animation-name:leafFall;
+      animation-timing-function:linear;
+      animation-iteration-count:infinite;
+    }
+
+    .leaf.leaf-october{
+      background:
+        radial-gradient(circle at 30% 32%, rgba(255,255,255,.22), transparent 42%),
+        linear-gradient(135deg, #f8d94f 0%, #e3a617 100%);
+    }
+
+    .leaf::after{
+      content:"";
+      position:absolute;
+      left:48%;
+      top:1px;
+      bottom:1px;
+      width:1px;
+      background:rgba(120,78,22,.35);
+      transform:rotate(18deg);
+    }
+
+    @keyframes leafFall{
+      0%{
+        transform:translate3d(0,-20px,0) rotate(0deg);
+        opacity:0;
+      }
+      8%{
+        opacity:.95;
+      }
+      100%{
+        transform:translate3d(var(--fall-x), 118%, 0) rotate(var(--rot-end));
+        opacity:0;
+      }
+    }
+
+    /* Rain */
+    .raindrop{
+      top:-18%;
+      width:2px;
+      height:70px;
+      opacity:.42;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0),
+          rgba(212,232,255,.88)
+        );
+
+      border-radius:999px;
+      filter:blur(.15px);
+
+      animation-name:rainFall;
+      animation-timing-function:linear;
+      animation-iteration-count:infinite;
+    }
+
+    @keyframes rainFall{
+      0%{
+        transform:translate3d(0,-40px,0) rotate(14deg);
+        opacity:0;
+      }
+      10%{
+        opacity:.42;
+      }
+      100%{
+        transform:translate3d(56px, 125%, 0) rotate(14deg);
+        opacity:0;
+      }
+    }
+
+    /* Snow */
+    .snowflake{
+      top:-10%;
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      opacity:.92;
+
+      background:
+        radial-gradient(circle at 35% 35%, #ffffff 0%, #eef6ff 58%, rgba(255,255,255,.15) 100%);
+
+      box-shadow:0 0 8px rgba(255,255,255,.24);
+
+      animation-name:snowFall;
+      animation-timing-function:linear;
+      animation-iteration-count:infinite;
+    }
+
+    .snowflake.big{
+      width:11px;
+      height:11px;
+      opacity:.98;
+    }
+
+    @keyframes snowFall{
+      0%{
+        transform:translate3d(0,-16px,0) rotate(0deg);
+        opacity:0;
+      }
+      10%{
+        opacity:.95;
+      }
+      100%{
+        transform:translate3d(var(--snow-x), 118%, 0) rotate(270deg);
+        opacity:0;
+      }
+    }
+
     /* =====================================
        CALENDAR SHELL
     ====================================== */
@@ -704,6 +851,7 @@
         >
 
         <div class="glass-sheen"></div>
+        <div id="photoFx" class="photo-fx" aria-hidden="true"></div>
       </div>
 
       <div class="hero-shade"></div>
@@ -798,19 +946,19 @@
 
   <script>
     const monthVisuals = {
-      '2026-08': { image:'08-serpen.png', label:'Серпень 2026' },
-      '2026-09': { image:'09-veresen.png', label:'Вересень 2026' },
-      '2026-10': { image:'10-zhovten.png', label:'Жовтень 2026' },
-      '2026-11': { image:'11-lystopad.png', label:'Листопад 2026' },
-      '2026-12': { image:'12-hruden.png', label:'Грудень 2026' },
+      '2026-08': { image:'08-serpen.png', label:'Серпень 2026', fx:'none' },
+      '2026-09': { image:'09-veresen.png', label:'Вересень 2026', fx:'leaves-september' },
+      '2026-10': { image:'10-zhovten.png', label:'Жовтень 2026', fx:'leaves-october' },
+      '2026-11': { image:'11-lystopad.png', label:'Листопад 2026', fx:'rain' },
+      '2026-12': { image:'12-hruden.png', label:'Грудень 2026', fx:'snow' },
 
-      '2027-01': { image:'01-sichen.png', label:'Січень 2027' },
-      '2027-02': { image:'02-lyutyi.png', label:'Лютий 2027' },
-      '2027-03': { image:'03-berezen.png', label:'Березень 2027' },
-      '2027-04': { image:'04-kviten.png', label:'Квітень 2027' },
-      '2027-05': { image:'05-traven.png', label:'Травень 2027' },
-      '2027-06': { image:'06-cherven.png', label:'Червень 2027' },
-      '2027-07': { image:'07-lypen.png', label:'Липень 2027' }
+      '2027-01': { image:'01-sichen.png', label:'Січень 2027', fx:'snow' },
+      '2027-02': { image:'02-lyutyi.png', label:'Лютий 2027', fx:'snow' },
+      '2027-03': { image:'03-berezen.png', label:'Березень 2027', fx:'none' },
+      '2027-04': { image:'04-kviten.png', label:'Квітень 2027', fx:'none' },
+      '2027-05': { image:'05-traven.png', label:'Травень 2027', fx:'none' },
+      '2027-06': { image:'06-cherven.png', label:'Червень 2027', fx:'none' },
+      '2027-07': { image:'07-lypen.png', label:'Липень 2027', fx:'none' }
     };
 
     Object.values(monthVisuals).forEach(item => {
@@ -822,9 +970,120 @@
     const photoB = document.getElementById('monthPhotoB');
     const monthLabel = document.getElementById('currentMonthLabel');
     const calendarFrame = document.getElementById('calendarFrame');
+    const photoFx = document.getElementById('photoFx');
+
+    function clearPhotoFx(){
+      if(photoFx){
+        photoFx.innerHTML = '';
+      }
+    }
+
+    function createLeaves(kind){
+      if(!photoFx) return;
+      clearPhotoFx();
+
+      const amount = kind === 'leaves-october' ? 18 : 14;
+
+      for(let i = 0; i < amount; i++){
+        const leaf = document.createElement('span');
+        leaf.className = 'fx-piece leaf' + (kind === 'leaves-october' ? ' leaf-october' : '');
+
+        const left = Math.random() * 96;
+        const size = 12 + Math.random() * 12;
+        const duration = 7 + Math.random() * 6;
+        const delay = Math.random() * -duration;
+        const fallX = (-80 + Math.random() * 180).toFixed(0) + 'px';
+        const rot = (-260 + Math.random() * 520).toFixed(0) + 'deg';
+
+        leaf.style.left = left + '%';
+        leaf.style.width = size + 'px';
+        leaf.style.height = (size * 0.68) + 'px';
+        leaf.style.animationDuration = duration + 's';
+        leaf.style.animationDelay = delay + 's';
+        leaf.style.setProperty('--fall-x', fallX);
+        leaf.style.setProperty('--rot-end', rot);
+        leaf.style.opacity = String(0.72 + Math.random() * 0.25);
+
+        photoFx.appendChild(leaf);
+      }
+    }
+
+    function createRain(){
+      if(!photoFx) return;
+      clearPhotoFx();
+
+      const amount = 34;
+
+      for(let i = 0; i < amount; i++){
+        const drop = document.createElement('span');
+        drop.className = 'fx-piece raindrop';
+
+        const left = Math.random() * 100;
+        const duration = 0.75 + Math.random() * 0.55;
+        const delay = Math.random() * -duration;
+        const height = 42 + Math.random() * 48;
+
+        drop.style.left = left + '%';
+        drop.style.height = height + 'px';
+        drop.style.animationDuration = duration + 's';
+        drop.style.animationDelay = delay + 's';
+        drop.style.opacity = String(0.18 + Math.random() * 0.28);
+
+        photoFx.appendChild(drop);
+      }
+    }
+
+    function createSnow(){
+      if(!photoFx) return;
+      clearPhotoFx();
+
+      const amount = 26;
+
+      for(let i = 0; i < amount; i++){
+        const flake = document.createElement('span');
+        flake.className = 'fx-piece snowflake' + (Math.random() > 0.72 ? ' big' : '');
+
+        const left = Math.random() * 100;
+        const duration = 8 + Math.random() * 7;
+        const delay = Math.random() * -duration;
+        const snowX = (-45 + Math.random() * 90).toFixed(0) + 'px';
+
+        flake.style.left = left + '%';
+        flake.style.animationDuration = duration + 's';
+        flake.style.animationDelay = delay + 's';
+        flake.style.setProperty('--snow-x', snowX);
+        flake.style.opacity = String(0.55 + Math.random() * 0.38);
+
+        photoFx.appendChild(flake);
+      }
+    }
+
+    function updatePhotoFx(monthKey){
+      const visual = monthVisuals[monthKey];
+      if(!visual) return;
+
+      switch(visual.fx){
+        case 'leaves-september':
+          createLeaves('leaves-september');
+          break;
+        case 'leaves-october':
+          createLeaves('leaves-october');
+          break;
+        case 'rain':
+          createRain();
+          break;
+        case 'snow':
+          createSnow();
+          break;
+        default:
+          clearPhotoFx();
+      }
+    }
 
     let activePhoto = 'A';
     let activeMonth = '2026-08';
+
+    updatePhotoFx(activeMonth);
 
     function setMonthVisual(monthKey){
       const visual = monthVisuals[monthKey];
@@ -855,6 +1114,7 @@
             : 'A';
 
         activeMonth = monthKey;
+        updatePhotoFx(monthKey);
       };
 
       monthLabel.textContent = visual.label;
