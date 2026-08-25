@@ -1,10 +1,8 @@
-<!-- BUILD: WOW-SEASONAL-FX-V2-2026-08-23 --> 
 <!DOCTYPE html>
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Календар виховної роботи на 2026–2027 н. р.</title>
 
   <style>
@@ -16,14 +14,15 @@
       --navy3:#123e69;
       --gold:#d8ad55;
       --gold-soft:#f0d58f;
-      --white:#ffffff;
-      --soft:#f7f9fc;
+      --white:#fff;
       --crop:220px;
     }
 
     html,body{
       margin:0;
       min-height:100%;
+      width:100%;
+      overflow-x:hidden;
     }
 
     body{
@@ -41,42 +40,46 @@
       padding:24px;
     }
 
-    /* =====================================
-       PREMIUM MONTHLY HERO
-    ====================================== */
+    /* =========================================================
+       DESKTOP HERO
+       ========================================================= */
 
-    .hero{
+    .desktop-hero{
       position:relative;
+      display:block;
       max-width:1580px;
       height:330px;
       margin:0 auto 22px;
       overflow:hidden;
-
       border:1px solid rgba(223,187,100,.45);
       border-radius:30px;
-
-      background:
-        linear-gradient(115deg,#0a2d51 0%,#071d36 48%,#06182d 100%);
-
+      background:linear-gradient(115deg,#0a2d51 0%,#071d36 48%,#06182d 100%);
       box-shadow:
         0 28px 70px rgba(0,0,0,.30),
         inset 0 1px 0 rgba(255,255,255,.07);
     }
 
-    .hero::before{
+    .desktop-hero::before,
+    .mobile-hero::before{
       content:"";
       position:absolute;
-      z-index:8;
+      z-index:30;
       left:5%;
       top:0;
       width:90%;
       height:2px;
-      background:
-        linear-gradient(90deg,transparent,#bb842b,#f2d992,#bb842b,transparent);
+      background:linear-gradient(
+        90deg,
+        transparent,
+        #bb842b,
+        #f2d992,
+        #bb842b,
+        transparent
+      );
       box-shadow:0 0 15px rgba(238,203,116,.25);
     }
 
-    .photo-stage{
+    .desktop-photo{
       position:absolute;
       z-index:1;
       top:18px;
@@ -84,71 +87,39 @@
       bottom:18px;
       width:61%;
       overflow:hidden;
-
       border:1px solid rgba(255,255,255,.14);
       border-radius:25px;
-
       background:#0b2744;
-
       box-shadow:
         inset 0 0 0 1px rgba(255,255,255,.04),
         0 15px 40px rgba(0,0,0,.22);
     }
 
     .month-photo{
-      --parallax-x:0px;
-      --parallax-y:0px;
-      --scroll-y:0px;
-
       position:absolute;
-      inset:-4%;
-      width:108%;
-      height:108%;
+      inset:0;
+      width:100%;
+      height:100%;
       object-fit:cover;
       object-position:center 68%;
-
-      opacity:0;
-
-      transform:
-        translate3d(
-          var(--parallax-x),
-          calc(var(--parallax-y) + var(--scroll-y)),
-          0
-        )
-        scale(1.095);
-
-      transform-origin:center center;
-
-      filter:
-        saturate(1.05)
-        contrast(1.025)
-        brightness(.95);
-
-      transition:
-        opacity .72s ease,
-        transform .16s ease-out;
-
-      will-change:transform,opacity;
+      transform:scale(1.04);
+      filter:saturate(1.05) contrast(1.025) brightness(.95);
+      transition:opacity .55s ease,transform .7s ease;
     }
 
-    .month-photo.active{
-      opacity:1;
-    }
-
-    .photo-stage::after{
+    .desktop-photo::after{
       content:"";
       position:absolute;
       inset:0;
       z-index:3;
       pointer-events:none;
-
       background:
         linear-gradient(
           90deg,
           rgba(6,24,45,.78) 0%,
-          rgba(6,24,45,.40) 22%,
-          rgba(6,24,45,.08) 52%,
-          rgba(6,24,45,.02) 100%
+          rgba(6,24,45,.38) 24%,
+          rgba(6,24,45,.05) 58%,
+          rgba(6,24,45,.01) 100%
         ),
         linear-gradient(
           180deg,
@@ -159,84 +130,51 @@
         );
     }
 
-    .glass-sheen{
-      --sheen-x:0px;
-      --sheen-y:0px;
-
-      position:absolute;
-      z-index:4;
-      inset:-2%;
-      pointer-events:none;
-      border-radius:inherit;
-
-      background:
-        linear-gradient(
-          115deg,
-          rgba(255,255,255,.14),
-          transparent 18%,
-          transparent 68%,
-          rgba(255,255,255,.035)
-        );
-
-      transform:
-        translate3d(
-          var(--sheen-x),
-          var(--sheen-y),
-          0
-        );
-
-      transition:transform .18s ease-out;
-      will-change:transform;
-    }
-
-    .hero-shade{
+    .desktop-shade{
       position:absolute;
       z-index:2;
       inset:0;
       pointer-events:none;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(5,22,41,.98) 0%,
-          rgba(6,25,46,.95) 34%,
-          rgba(6,25,46,.54) 55%,
-          rgba(6,25,46,.06) 76%,
-          transparent 100%
-        );
+      background:linear-gradient(
+        90deg,
+        rgba(5,22,41,.98) 0%,
+        rgba(6,25,46,.95) 34%,
+        rgba(6,25,46,.54) 55%,
+        rgba(6,25,46,.06) 76%,
+        transparent 100%
+      );
     }
 
-    .hero-content{
+    .desktop-content{
       position:relative;
       z-index:20;
       height:100%;
-
       display:grid;
       grid-template-columns:125px minmax(430px,1fr);
       align-content:center;
       align-items:center;
       gap:26px;
-
       width:59%;
       padding:34px 0 74px 34px;
     }
 
     .logo-wrap{
       position:relative;
-      width:108px;
-      height:108px;
       display:grid;
       place-items:center;
       overflow:hidden;
       border-radius:50%;
-
       background:#fff;
       border:2px solid rgba(222,181,82,.92);
-
       box-shadow:
         0 12px 28px rgba(0,0,0,.25),
         0 0 0 4px rgba(255,255,255,.024),
         inset 0 0 0 2px rgba(255,255,255,.65);
+    }
+
+    .desktop-content .logo-wrap{
+      width:108px;
+      height:108px;
     }
 
     .logo-wrap::after{
@@ -247,6 +185,7 @@
       border:1px solid rgba(244,219,155,.35);
       box-shadow:0 0 16px rgba(229,191,99,.12);
       animation:logoBreath 6s ease-in-out infinite;
+      pointer-events:none;
     }
 
     @keyframes logoBreath{
@@ -276,61 +215,45 @@
       text-transform:uppercase;
     }
 
-    h1{
+    .desktop-title{
       margin:0;
       max-width:790px;
-
       font-size:clamp(34px,3.6vw,56px);
       line-height:1.02;
       font-weight:850;
       letter-spacing:-1.45px;
-
-      color:#fff;
-      background:
-        linear-gradient(
-          180deg,
-          #ffffff 0%,
-          #f7fbff 34%,
-          #dce9f5 63%,
-          #a9c1d7 100%
-        );
+      background:linear-gradient(
+        180deg,
+        #fff 0%,
+        #f7fbff 34%,
+        #dce9f5 63%,
+        #a9c1d7 100%
+      );
       -webkit-background-clip:text;
       background-clip:text;
       -webkit-text-fill-color:transparent;
-
       filter:
         drop-shadow(0 2px 0 rgba(255,255,255,.22))
         drop-shadow(0 4px 0 rgba(54,87,118,.92))
         drop-shadow(0 7px 0 rgba(22,50,79,.88))
         drop-shadow(0 12px 16px rgba(0,0,0,.30));
-
-      text-shadow:
-        0 1px 0 rgba(255,255,255,.8),
-        1px 2px 0 rgba(130,158,184,.78),
-        2px 3px 0 rgba(72,103,132,.72),
-        3px 4px 0 rgba(38,68,97,.68);
     }
 
-    h1 span{
+    .desktop-title span{
       display:block;
       margin-top:8px;
-
       font-size:.66em;
       font-weight:720;
       letter-spacing:-.35px;
-
-      color:#d5e5f3;
-      background:
-        linear-gradient(
-          180deg,
-          #f6fbff 0%,
-          #c7daeb 62%,
-          #86a7c4 100%
-        );
+      background:linear-gradient(
+        180deg,
+        #f6fbff 0%,
+        #c7daeb 62%,
+        #86a7c4 100%
+      );
       -webkit-background-clip:text;
       background-clip:text;
       -webkit-text-fill-color:transparent;
-
       filter:
         drop-shadow(0 2px 0 rgba(43,73,101,.82))
         drop-shadow(0 5px 8px rgba(0,0,0,.22));
@@ -338,12 +261,10 @@
 
     .author{
       margin-top:15px;
-
       display:flex;
       flex-wrap:wrap;
       align-items:center;
       gap:8px;
-
       color:#aebfd1;
       font-size:15px;
     }
@@ -361,40 +282,37 @@
       box-shadow:0 0 8px rgba(222,174,72,.48);
     }
 
-    .year-card{
+    .desktop-year{
       position:absolute;
-      z-index:12;
+      z-index:20;
       right:38px;
       top:34px;
-
       min-width:188px;
       padding:14px 18px;
-
       text-align:center;
-
-      color:#f8fbff;
-
       border:1px solid rgba(221,185,94,.62);
       border-radius:14px;
-
-      background:
-        linear-gradient(145deg,rgba(7,29,52,.72),rgba(9,38,68,.58));
-
+      background:linear-gradient(
+        145deg,
+        rgba(7,29,52,.72),
+        rgba(9,38,68,.58)
+      );
       backdrop-filter:blur(12px);
-
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.09),
         0 10px 25px rgba(0,0,0,.18);
     }
 
-    .year-card strong{
+    .desktop-year strong,
+    .mobile-year strong{
       display:block;
       font-size:22px;
       font-weight:800;
       letter-spacing:.03em;
     }
 
-    .year-card span{
+    .desktop-year span,
+    .mobile-year span{
       display:block;
       margin-top:4px;
       color:#ead9a6;
@@ -407,308 +325,305 @@
       z-index:12;
       right:-1%;
       bottom:0;
-
       width:60%;
       height:auto;
-
       pointer-events:none;
-
-      filter:
-        drop-shadow(0 18px 24px rgba(0,0,0,.24));
+      filter:drop-shadow(0 18px 24px rgba(0,0,0,.24));
     }
 
+    /* =========================================================
+       MOBILE HERO
+       ========================================================= */
 
-    /* =====================================
-       WOW MONTH FX — ONLY INSIDE LANDSCAPE
-    ====================================== */
+    .mobile-hero{
+      display:none;
+      position:relative;
+      width:100%;
+      margin:0 auto 14px;
+      overflow:hidden;
+      border:1px solid rgba(223,187,100,.45);
+      border-radius:22px;
+      background:
+        radial-gradient(
+          circle at 95% 0%,
+          rgba(216,173,85,.12),
+          transparent 28%
+        ),
+        linear-gradient(
+          145deg,
+          #0a2d51 0%,
+          #071d36 58%,
+          #06182d 100%
+        );
+      box-shadow:
+        0 20px 48px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.07);
+    }
+
+    .mobile-head{
+      display:grid;
+      grid-template-columns:64px minmax(0,1fr);
+      gap:13px;
+      align-items:center;
+      padding:20px 16px 12px;
+    }
+
+    .mobile-head .logo-wrap{
+      width:62px;
+      height:62px;
+    }
+
+    .mobile-school{
+      margin:0 0 5px;
+      color:var(--gold-soft);
+      font-size:9px;
+      line-height:1.35;
+      font-weight:800;
+      letter-spacing:1.05px;
+      text-transform:uppercase;
+      overflow-wrap:anywhere;
+    }
+
+    .mobile-title{
+      margin:0;
+      color:#fff;
+      font-size:clamp(23px,7.2vw,31px);
+      line-height:1.04;
+      font-weight:850;
+      letter-spacing:-.7px;
+      text-shadow:0 4px 10px rgba(0,0,0,.28);
+    }
+
+    .mobile-title span{
+      display:block;
+      margin-top:5px;
+      color:#cbdceb;
+      font-size:.60em;
+      font-weight:700;
+      letter-spacing:-.1px;
+    }
+
+    .mobile-year{
+      margin:0 16px 13px;
+      padding:10px 14px;
+      text-align:center;
+      border:1px solid rgba(221,185,94,.62);
+      border-radius:13px;
+      background:linear-gradient(
+        145deg,
+        rgba(7,29,52,.75),
+        rgba(9,38,68,.62)
+      );
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .mobile-year strong{
+      font-size:18px;
+    }
+
+    .mobile-photo-card{
+      position:relative;
+      height:210px;
+      margin:0 12px 12px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:17px;
+      background:#0b2744;
+      box-shadow:0 12px 28px rgba(0,0,0,.20);
+    }
+
+    .mobile-photo-card .month-photo{
+      object-position:center 66%;
+      transform:scale(1.035);
+    }
+
+    .mobile-photo-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:5;
+      pointer-events:none;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.04),
+          transparent 30%,
+          rgba(2,13,25,.20)
+        ),
+        linear-gradient(
+          90deg,
+          rgba(5,22,41,.15),
+          transparent 42%
+        );
+    }
+
+    .mobile-desk{
+      position:absolute;
+      z-index:8;
+      right:-7%;
+      bottom:-2px;
+      width:66%;
+      max-width:300px;
+      height:auto;
+      pointer-events:none;
+      filter:drop-shadow(0 10px 14px rgba(0,0,0,.22));
+    }
+
+    .mobile-author{
+      padding:0 16px 16px;
+      color:#aebfd1;
+      font-size:11px;
+      line-height:1.45;
+      text-align:center;
+    }
+
+    .mobile-author strong{
+      color:#fff;
+    }
+
+    /* =========================================================
+       SEASON FX
+       ========================================================= */
 
     .photo-fx{
       position:absolute;
       inset:0;
-      z-index:5;
+      z-index:4;
       overflow:hidden;
       pointer-events:none;
       border-radius:inherit;
-      contain:paint;
     }
 
-    .fx-piece{
+    .fx-leaf,
+    .fx-snow,
+    .fx-rain{
       position:absolute;
       pointer-events:none;
-      will-change:transform,opacity;
     }
-
-    .fx-atmosphere{
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-    }
-
-    /* ---------- SEPTEMBER / OCTOBER LEAVES ---------- */
 
     .fx-leaf{
-      top:-42px;
-      width:22px;
-      height:25px;
+      top:-28px;
+      width:16px;
+      height:18px;
+      border-radius:70% 20% 70% 25%;
+      background:linear-gradient(145deg,#f7d448,#d7931d);
+      filter:drop-shadow(0 3px 3px rgba(0,0,0,.18));
+      animation:leafFall var(--dur,8s)
+        linear var(--delay,0s) infinite;
+    }
 
-      clip-path:polygon(
-        50% 0%,
-        59% 22%,
-        76% 10%,
-        72% 34%,
-        100% 39%,
-        78% 54%,
-        90% 76%,
-        61% 68%,
-        50% 100%,
-        39% 68%,
-        10% 76%,
-        22% 54%,
-        0% 39%,
-        28% 34%,
-        24% 10%,
-        41% 22%
+    .fx-leaf.oct{
+      background:linear-gradient(
+        145deg,
+        #ffe45a,
+        #f2aa1d 55%,
+        #d36d11
       );
-
-      background:
-        radial-gradient(circle at 35% 28%,rgba(255,255,255,.38),transparent 26%),
-        linear-gradient(145deg,var(--leaf-a),var(--leaf-b) 58%,var(--leaf-c));
-
-      filter:
-        drop-shadow(0 3px 3px rgba(0,0,0,.18));
-
-      transform-origin:50% 68%;
-
-      animation:
-        leafTravel var(--duration) linear var(--delay) infinite;
     }
 
-    .fx-leaf::after{
-      content:"";
-      position:absolute;
-      left:49%;
-      top:38%;
-      width:2px;
-      height:52%;
-      border-radius:4px;
-      background:rgba(105,65,21,.55);
-      transform:rotate(3deg);
-    }
-
-    .fx-leaf.near{
-      filter:
-        blur(.15px)
-        drop-shadow(0 5px 6px rgba(0,0,0,.20));
-    }
-
-    .fx-leaf.far{
-      filter:
-        blur(.45px)
-        drop-shadow(0 2px 2px rgba(0,0,0,.12));
-    }
-
-    @keyframes leafTravel{
+    @keyframes leafFall{
       0%{
-        transform:
-          translate3d(0,-60px,0)
-          rotate(0deg)
-          rotateX(0deg);
+        transform:translate3d(0,-30px,0) rotate(0);
         opacity:0;
       }
-
-      7%{
-        opacity:var(--opacity);
+      9%{
+        opacity:.92;
       }
-
-      28%{
-        transform:
-          translate3d(calc(var(--drift) * .34),calc(var(--travel) * .28),0)
-          rotate(calc(var(--spin) * .31))
-          rotateX(75deg);
-      }
-
       55%{
         transform:
-          translate3d(calc(var(--drift) * -.18),calc(var(--travel) * .56),0)
-          rotate(calc(var(--spin) * .61))
-          rotateX(155deg);
+          translate3d(var(--drift,30px),55%,0)
+          rotate(180deg);
       }
-
-      82%{
-        opacity:var(--opacity);
-      }
-
       100%{
         transform:
-          translate3d(var(--drift),var(--travel),0)
-          rotate(var(--spin))
-          rotateX(260deg);
+          translate3d(
+            calc(var(--drift,30px) * -.7),
+            260px,
+            0
+          )
+          rotate(420deg);
         opacity:0;
       }
-    }
-
-    /* ---------- NOVEMBER RAIN ---------- */
-
-    .rain-mist{
-      background:
-        linear-gradient(180deg,rgba(151,176,198,.07),rgba(27,54,76,.14)),
-        radial-gradient(circle at 55% 65%,rgba(220,235,247,.07),transparent 42%);
-      animation:rainMist 5s ease-in-out infinite alternate;
-    }
-
-    @keyframes rainMist{
-      from{opacity:.45}
-      to{opacity:.82}
     }
 
     .fx-rain{
-      top:-110px;
-      width:1.6px;
-      height:86px;
+      top:-60px;
+      width:1.3px;
+      height:58px;
       border-radius:999px;
-
-      background:
-        linear-gradient(
-          180deg,
-          rgba(255,255,255,0),
-          rgba(224,240,255,.20) 20%,
-          rgba(223,239,255,.92)
-        );
-
-      filter:blur(.1px);
-
-      animation:
-        rainTravel var(--duration) linear var(--delay) infinite;
+      background:linear-gradient(
+        180deg,
+        transparent,
+        rgba(225,241,255,.82)
+      );
+      transform:rotate(11deg);
+      animation:rainFall var(--dur,1s)
+        linear var(--delay,0s) infinite;
     }
 
-    .fx-rain.far{
-      width:1px;
-      height:48px;
-      opacity:.52;
-    }
-
-    @keyframes rainTravel{
-      0%{
-        transform:translate3d(-24px,-90px,0) rotate(12deg);
+    @keyframes rainFall{
+      from{
+        transform:
+          translate3d(-12px,-70px,0)
+          rotate(11deg);
         opacity:0;
       }
-      7%{
-        opacity:var(--opacity);
+      10%{
+        opacity:.6;
       }
-      92%{
-        opacity:var(--opacity);
-      }
-      100%{
-        transform:translate3d(74px,var(--travel),0) rotate(12deg);
+      to{
+        transform:
+          translate3d(36px,360px,0)
+          rotate(11deg);
         opacity:0;
       }
-    }
-
-    /* ---------- WINTER SNOW ---------- */
-
-    .snow-glow{
-      background:
-        radial-gradient(circle at 67% 17%,rgba(220,239,255,.12),transparent 28%),
-        linear-gradient(180deg,rgba(214,233,251,.04),transparent 44%);
-      animation:snowGlow 6s ease-in-out infinite alternate;
-    }
-
-    @keyframes snowGlow{
-      from{opacity:.45}
-      to{opacity:.92}
     }
 
     .fx-snow{
-      top:-28px;
-      width:var(--size);
-      height:var(--size);
+      top:-18px;
+      width:var(--size,7px);
+      height:var(--size,7px);
       border-radius:50%;
-
-      background:
-        radial-gradient(
-          circle at 34% 30%,
-          #ffffff 0%,
-          #f8fcff 44%,
-          #dbeeff 72%,
-          rgba(255,255,255,.12) 100%
-        );
-
-      box-shadow:
-        0 0 calc(var(--size) * .85) rgba(241,249,255,.65);
-
-      animation:
-        snowTravel var(--duration) linear var(--delay) infinite;
+      background:#fff;
+      box-shadow:0 0 8px rgba(255,255,255,.65);
+      animation:snowFall var(--dur,8s)
+        linear var(--delay,0s) infinite;
     }
 
-    .fx-snow.near{
-      filter:blur(.25px);
-    }
-
-    .fx-snow.far{
-      filter:blur(.7px);
-    }
-
-    @keyframes snowTravel{
-      0%{
-        transform:
-          translate3d(0,-36px,0)
-          rotate(0deg);
+    @keyframes snowFall{
+      from{
+        transform:translate3d(0,-30px,0);
         opacity:0;
       }
-
-      8%{
-        opacity:var(--opacity);
+      10%{
+        opacity:.9;
       }
-
-      34%{
+      to{
         transform:
-          translate3d(calc(var(--drift) * .45),calc(var(--travel) * .34),0)
-          rotate(90deg);
-      }
-
-      68%{
-        transform:
-          translate3d(calc(var(--drift) * -.22),calc(var(--travel) * .69),0)
-          rotate(185deg);
-      }
-
-      88%{
-        opacity:var(--opacity);
-      }
-
-      100%{
-        transform:
-          translate3d(var(--drift),var(--travel),0)
-          rotate(280deg);
+          translate3d(var(--drift,24px),360px,0);
         opacity:0;
       }
     }
 
-
-    /* =====================================
-       CALENDAR SHELL
-    ====================================== */
+    /* =========================================================
+       CALENDAR
+       ========================================================= */
 
     .calendar-shell{
       position:relative;
       max-width:1580px;
       margin:0 auto;
       padding:6px;
-
       border:1px solid rgba(212,171,78,.30);
       border-radius:27px;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(233,207,144,.92),
-          rgba(176,126,39,.88),
-          rgba(235,213,161,.94),
-          rgba(159,107,29,.88)
-        );
-
-      box-shadow:
-        0 28px 70px rgba(0,0,0,.28);
+      background:linear-gradient(
+        135deg,
+        rgba(233,207,144,.92),
+        rgba(176,126,39,.88),
+        rgba(235,213,161,.94),
+        rgba(159,107,29,.88)
+      );
+      box-shadow:0 28px 70px rgba(0,0,0,.28);
     }
 
     .calendar-white{
@@ -716,7 +631,8 @@
       overflow:hidden;
       border-radius:21px;
       background:#fff;
-      box-shadow:inset 0 0 0 1px rgba(208,220,233,.80);
+      box-shadow:
+        inset 0 0 0 1px rgba(208,220,233,.80);
     }
 
     .floating-week{
@@ -725,18 +641,13 @@
       left:0;
       right:0;
       z-index:80;
-
       display:grid;
       grid-template-columns:repeat(7,1fr);
       gap:7px;
-
       padding:9px 28px 11px;
-
       background:rgba(255,255,255,.975);
       border-bottom:1px solid rgba(190,207,223,.72);
-
       box-shadow:0 8px 18px rgba(8,29,54,.10);
-
       opacity:0;
       transform:translateY(-8px);
       pointer-events:none;
@@ -750,19 +661,17 @@
 
     .floating-week div{
       padding:9px 4px 8px;
-
       text-align:center;
-
       color:#eef5fb;
       font-size:12px;
       font-weight:800;
-
       border:1px solid rgba(255,255,255,.10);
       border-radius:9px;
-
-      background:
-        linear-gradient(180deg,#255b8b,#173f68);
-
+      background:linear-gradient(
+        180deg,
+        #255b8b,
+        #173f68
+      );
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.10),
         0 4px 10px rgba(12,42,73,.08);
@@ -772,25 +681,22 @@
       overflow-y:auto;
       overflow-x:hidden;
       height:720px;
-      background:white;
+      background:#fff;
     }
 
-    iframe{
+    #calendarFrame{
       position:relative;
       top:calc(var(--crop) * -1);
-
       width:100%;
       height:calc(1150px + var(--crop));
-
       display:block;
       border:0;
-      background:white;
+      background:#fff;
     }
 
     .footer-link{
       max-width:1580px;
       margin:16px auto 5px;
-
       text-align:center;
       color:#8298af;
       font-size:13px;
@@ -806,145 +712,142 @@
       color:#fff;
     }
 
-    @media(max-width:1050px){
-      .hero{
+    @media(max-width:1050px) and (min-width:721px){
+
+      .desktop-hero{
         height:360px;
       }
 
-      .photo-stage{
+      .desktop-photo{
         width:66%;
       }
 
-      .hero-content{
+      .desktop-content{
         width:70%;
         grid-template-columns:105px 1fr;
         padding-left:26px;
       }
 
-      .logo-wrap{
+      .desktop-content .logo-wrap{
         width:94px;
         height:94px;
-      }
-
-      .logo-wrap img{
-        width:124%;
-        height:124%;
       }
 
       .desk-foreground{
         width:64%;
         right:-2%;
-        bottom:0;
       }
     }
 
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
     @media(max-width:720px){
+
       :root{
-        --crop:265px;
+        --crop:0px;
+      }
+
+      body{
+        background-attachment:scroll;
       }
 
       .page{
-        padding:10px;
-      }
-
-      .hero{
-        height:440px;
-        border-radius:23px;
-      }
-
-      .photo-stage{
-        top:145px;
-        left:12px;
-        right:12px;
-        bottom:12px;
-        width:auto;
-      }
-
-      .hero-shade{
-        background:
-          linear-gradient(
-            180deg,
-            rgba(5,22,41,.99) 0%,
-            rgba(5,22,41,.90) 32%,
-            rgba(5,22,41,.22) 67%,
-            rgba(5,22,41,.04) 100%
-          );
-      }
-
-      .hero-content{
+        padding:8px;
         width:100%;
-        height:auto;
-        grid-template-columns:72px 1fr;
-        gap:14px;
-
-        padding:24px 18px 0;
-        align-content:start;
+        max-width:100%;
       }
 
-      .logo-wrap{
-        width:64px;
-        height:64px;
-      }
-
-      .logo-wrap img{
-        width:126%;
-        height:126%;
-      }
-
-      .school-name{
-        font-size:9px;
-        letter-spacing:1.15px;
-      }
-
-      h1{
-        font-size:28px;
-      }
-
-      .author{
+      .desktop-hero{
         display:none;
       }
 
-      .year-card{
-        top:104px;
-        right:18px;
-        min-width:142px;
-        padding:9px 12px;
-      }
-
-      .year-card strong{
-        font-size:17px;
-      }
-
-      .desk-foreground{
-        width:82%;
-        right:-9%;
-        bottom:0;
+      .mobile-hero{
+        display:block;
       }
 
       .calendar-shell{
-        padding:4px;
-        border-radius:22px;
+        width:100%;
+        max-width:100%;
+        padding:3px;
+        border-radius:18px;
+        box-shadow:0 18px 42px rgba(0,0,0,.25);
       }
 
       .calendar-white{
-        border-radius:18px;
+        border-radius:15px;
+      }
+
+      .floating-week{
+        display:none !important;
       }
 
       .calendar-viewport{
-        height:1300px;
+        width:100%;
+        height:calc(100svh - 24px);
+        min-height:640px;
+        max-height:920px;
+        overflow:hidden;
+        background:#fff;
       }
 
-      iframe{
-        height:calc(1300px + var(--crop));
+      #calendarFrame{
+        position:static;
+        top:auto;
+        width:100%;
+        height:100%;
+        min-height:100%;
+        border:0;
+      }
+
+      .footer-link{
+        margin:12px auto 6px;
+        padding:0 8px;
+        font-size:12px;
+      }
+    }
+
+    @media(max-width:390px){
+
+      .mobile-head{
+        grid-template-columns:56px minmax(0,1fr);
+        gap:10px;
+        padding:18px 13px 10px;
+      }
+
+      .mobile-head .logo-wrap{
+        width:54px;
+        height:54px;
+      }
+
+      .mobile-title{
+        font-size:22px;
+      }
+
+      .mobile-year{
+        margin-left:13px;
+        margin-right:13px;
+      }
+
+      .mobile-photo-card{
+        height:190px;
+        margin-left:10px;
+        margin-right:10px;
       }
     }
 
     @media(prefers-reduced-motion:reduce){
+
       *,
       *::before,
       *::after{
         animation:none !important;
         transition:none !important;
+      }
+
+      .photo-fx{
+        display:none !important;
       }
     }
   </style>
@@ -954,38 +857,37 @@
 
   <main class="page">
 
-    <section class="hero">
+    <!-- DESKTOP -->
 
-      <div class="photo-stage">
-        <img
-          id="monthPhotoA"
-          class="month-photo active"
-          src="08-serpen.png"
-          alt=""
-          aria-hidden="true"
-        >
+    <section class="desktop-hero">
+
+      <div class="desktop-photo">
 
         <img
-          id="monthPhotoB"
+          id="desktopMonthPhoto"
           class="month-photo"
           src="08-serpen.png"
           alt=""
-          aria-hidden="true"
-        >
+          aria-hidden="true">
 
-        <div class="glass-sheen"></div>
-        <div id="photoFx" class="photo-fx" aria-hidden="true"></div>
+        <div
+          id="desktopFx"
+          class="photo-fx"
+          aria-hidden="true">
+        </div>
+
       </div>
 
-      <div class="hero-shade"></div>
+      <div class="desktop-shade"></div>
 
-      <div class="hero-content">
+      <div class="desktop-content">
 
         <div class="logo-wrap">
+
           <img
             src="logo.png"
-            alt="Логотип Львівського ліцею"
-          >
+            alt="Логотип Львівського ліцею">
+
         </div>
 
         <div class="main-info">
@@ -994,35 +896,127 @@
             Львівський ліцей Тягинської сільської ради
           </p>
 
-          <h1>
+          <h1 class="desktop-title">
             Календар виховної роботи
-            <span>на 2026–2027 н. р.</span>
+            <span>
+              на 2026–2027 н. р.
+            </span>
           </h1>
 
           <div class="author">
-            <span>Заступник директора з виховної роботи</span>
+
+            <span>
+              Заступник директора з виховної роботи
+            </span>
+
             <span class="author-dot"></span>
-            <strong>Н. С. Товстуха</strong>
+
+            <strong>
+              Н. С. Товстуха
+            </strong>
+
           </div>
 
         </div>
 
       </div>
 
-      <div class="year-card">
-        <strong>2026 / 2027</strong>
-        <span id="currentMonthLabel">Серпень 2026</span>
+      <div class="desktop-year">
+
+        <strong>
+          2026 / 2027
+        </strong>
+
+        <span data-month-label>
+          Серпень 2026
+        </span>
+
       </div>
 
       <img
         class="desk-foreground"
         src="teacher-desk.png"
         alt=""
-        aria-hidden="true"
-      >
+        aria-hidden="true">
 
     </section>
 
+    <!-- MOBILE -->
+
+    <section class="mobile-hero">
+
+      <div class="mobile-head">
+
+        <div class="logo-wrap">
+
+          <img
+            src="logo.png"
+            alt="Логотип Львівського ліцею">
+
+        </div>
+
+        <div>
+
+          <p class="mobile-school">
+            Львівський ліцей Тягинської сільської ради
+          </p>
+
+          <h1 class="mobile-title">
+            Календар виховної роботи
+            <span>
+              на 2026–2027 н. р.
+            </span>
+          </h1>
+
+        </div>
+
+      </div>
+
+      <div class="mobile-year">
+
+        <strong>
+          2026 / 2027
+        </strong>
+
+        <span data-month-label>
+          Серпень 2026
+        </span>
+
+      </div>
+
+      <div class="mobile-photo-card">
+
+        <img
+          id="mobileMonthPhoto"
+          class="month-photo"
+          src="08-serpen.png"
+          alt=""
+          aria-hidden="true">
+
+        <div
+          id="mobileFx"
+          class="photo-fx"
+          aria-hidden="true">
+        </div>
+
+        <img
+          class="mobile-desk"
+          src="teacher-desk.png"
+          alt=""
+          aria-hidden="true">
+
+      </div>
+
+      <div class="mobile-author">
+        Заступник директора з виховної роботи ·
+        <strong>
+          Н. С. Товстуха
+        </strong>
+      </div>
+
+    </section>
+
+    <!-- CALENDAR -->
 
     <section class="calendar-shell">
 
@@ -1043,8 +1037,8 @@
           <iframe
             id="calendarFrame"
             src="https://script.google.com/macros/s/AKfycbxRlRohLBMEcZtJ0us4-jPMLC62y64uETmdiLMs3EHJdqRXhur6BSACEXWVGcnBFIp-eg/exec"
-            title="Календар виховної роботи"
-          ></iframe>
+            title="Календар виховної роботи">
+          </iframe>
 
         </div>
 
@@ -1052,387 +1046,506 @@
 
     </section>
 
-
     <div class="footer-link">
+
       Якщо календар не відобразився —
+
       <a
         href="https://script.google.com/macros/s/AKfycbxRlRohLBMEcZtJ0us4-jPMLC62y64uETmdiLMs3EHJdqRXhur6BSACEXWVGcnBFIp-eg/exec"
         target="_blank"
-        rel="noopener noreferrer"
-      >
+        rel="noopener noreferrer">
+
         відкрити окремо
+
       </a>
+
     </div>
 
   </main>
 
-
   <script>
-    const monthVisuals = {
-      '2026-08': { image:'08-serpen.png', label:'Серпень 2026', fx:'none' },
-      '2026-09': { image:'09-veresen.png', label:'Вересень 2026', fx:'september' },
-      '2026-10': { image:'10-zhovten.png', label:'Жовтень 2026', fx:'october' },
-      '2026-11': { image:'11-lystopad.png', label:'Листопад 2026', fx:'november' },
-      '2026-12': { image:'12-hruden.png', label:'Грудень 2026', fx:'winter' },
 
-      '2027-01': { image:'01-sichen.png', label:'Січень 2027', fx:'winter' },
-      '2027-02': { image:'02-lyutyi.png', label:'Лютий 2027', fx:'winter' },
-      '2027-03': { image:'03-berezen.png', label:'Березень 2027', fx:'none' },
-      '2027-04': { image:'04-kviten.png', label:'Квітень 2027', fx:'none' },
-      '2027-05': { image:'05-traven.png', label:'Травень 2027', fx:'none' },
-      '2027-06': { image:'06-cherven.png', label:'Червень 2027', fx:'none' },
-      '2027-07': { image:'07-lypen.png', label:'Липень 2027', fx:'none' }
+    const monthVisuals = {
+
+      '2026-08': {
+        image:'08-serpen.png',
+        label:'Серпень 2026',
+        fx:'none'
+      },
+
+      '2026-09': {
+        image:'09-veresen.png',
+        label:'Вересень 2026',
+        fx:'september'
+      },
+
+      '2026-10': {
+        image:'10-zhovten.png',
+        label:'Жовтень 2026',
+        fx:'october'
+      },
+
+      '2026-11': {
+        image:'11-lystopad.png',
+        label:'Листопад 2026',
+        fx:'november'
+      },
+
+      '2026-12': {
+        image:'12-hruden.png',
+        label:'Грудень 2026',
+        fx:'winter'
+      },
+
+      '2027-01': {
+        image:'01-sichen.png',
+        label:'Січень 2027',
+        fx:'winter'
+      },
+
+      '2027-02': {
+        image:'02-lyutyi.png',
+        label:'Лютий 2027',
+        fx:'winter'
+      },
+
+      '2027-03': {
+        image:'03-berezen.png',
+        label:'Березень 2027',
+        fx:'none'
+      },
+
+      '2027-04': {
+        image:'04-kviten.png',
+        label:'Квітень 2027',
+        fx:'none'
+      },
+
+      '2027-05': {
+        image:'05-traven.png',
+        label:'Травень 2027',
+        fx:'none'
+      },
+
+      '2027-06': {
+        image:'06-cherven.png',
+        label:'Червень 2027',
+        fx:'none'
+      },
+
+      '2027-07': {
+        image:'07-lypen.png',
+        label:'Липень 2027',
+        fx:'none'
+      }
+
     };
 
     Object.values(monthVisuals).forEach(item => {
-      const preloader = new Image();
-      preloader.src = item.image;
+
+      const img = new Image();
+
+      img.src = item.image;
+
     });
 
-    const photoA = document.getElementById('monthPhotoA');
-    const photoB = document.getElementById('monthPhotoB');
-    const monthLabel = document.getElementById('currentMonthLabel');
-    const calendarFrame = document.getElementById('calendarFrame');
-    const photoFx = document.getElementById('photoFx');
+    const desktopPhoto =
+      document.getElementById('desktopMonthPhoto');
 
-    function fxTravel(extra = 170){
-      if(!photoFx) return 520;
-      return Math.max(360, photoFx.clientHeight + extra);
+    const mobilePhoto =
+      document.getElementById('mobileMonthPhoto');
+
+    const desktopFx =
+      document.getElementById('desktopFx');
+
+    const mobileFx =
+      document.getElementById('mobileFx');
+
+
+    function setLabels(text){
+
+      document
+        .querySelectorAll('[data-month-label]')
+        .forEach(el => {
+
+          el.textContent = text;
+
+        });
+
     }
 
-    function clearPhotoFx(){
-      if(photoFx){
-        photoFx.replaceChildren();
+
+    function clearFx(layer){
+
+      if(layer){
+
+        layer.replaceChildren();
+
       }
+
     }
 
-    function addAtmosphere(className){
-      const layer = document.createElement('div');
-      layer.className = 'fx-atmosphere ' + className;
-      photoFx.appendChild(layer);
-    }
 
-    function createLeaves(mode){
-      if(!photoFx) return;
-      clearPhotoFx();
+    function makeLeaves(
+      layer,
+      october = false
+    ){
 
-      const isOctober = mode === 'october';
-      const count = isOctober ? 34 : 27;
-      const travel = fxTravel(190);
+      clearFx(layer);
 
-      const septemberPalettes = [
-        ['#d5df63','#efc33f','#9bb94d'],
-        ['#a8c85b','#e8c74d','#d89b2e'],
-        ['#e4c84a','#c9dd63','#8ca849'],
-        ['#f0cb45','#d9a92f','#aac45d']
-      ];
+      const count =
+        window.innerWidth <= 720
+          ? 12
+          : 24;
 
-      const octoberPalettes = [
-        ['#ffe55c','#f8bf22','#df8617'],
-        ['#ffd83f','#eea313','#d66b13'],
-        ['#fff06a','#f2c62f','#e38a17'],
-        ['#f8d443','#f0a51e','#c76b12']
-      ];
+      for(
+        let i = 0;
+        i < count;
+        i++
+      ){
 
-      const palettes = isOctober ? octoberPalettes : septemberPalettes;
+        const leaf =
+          document.createElement('span');
 
-      for(let i = 0; i < count; i++){
-        const leaf = document.createElement('span');
-        const depth = Math.random();
         leaf.className =
-          'fx-piece fx-leaf ' +
-          (depth > .74 ? 'near' : depth < .26 ? 'far' : '');
+          'fx-leaf' +
+          (october ? ' oct' : '');
 
-        const palette = palettes[Math.floor(Math.random() * palettes.length)];
-        const size = 10 + depth * 19 + Math.random() * 5;
-        const duration = 5.8 + (1 - depth) * 5.2 + Math.random() * 2.2;
-        const delay = -(Math.random() * duration);
-        const drift = -150 + Math.random() * 300;
-        const spin = (-520 + Math.random() * 1040);
+        leaf.style.left =
+          (Math.random() * 96) + '%';
 
-        leaf.style.left = (2 + Math.random() * 96) + '%';
-        leaf.style.width = size + 'px';
-        leaf.style.height = (size * 1.10) + 'px';
+        leaf.style.setProperty(
+          '--dur',
+          (
+            6 +
+            Math.random() * 5
+          ).toFixed(2) + 's'
+        );
 
-        leaf.style.setProperty('--leaf-a', palette[0]);
-        leaf.style.setProperty('--leaf-b', palette[1]);
-        leaf.style.setProperty('--leaf-c', palette[2]);
-        leaf.style.setProperty('--travel', travel + 'px');
-        leaf.style.setProperty('--drift', drift.toFixed(0) + 'px');
-        leaf.style.setProperty('--spin', spin.toFixed(0) + 'deg');
-        leaf.style.setProperty('--duration', duration.toFixed(2) + 's');
-        leaf.style.setProperty('--delay', delay.toFixed(2) + 's');
-        leaf.style.setProperty('--opacity', (0.58 + depth * .38).toFixed(2));
+        leaf.style.setProperty(
+          '--delay',
+          (
+            -Math.random() * 8
+          ).toFixed(2) + 's'
+        );
 
-        photoFx.appendChild(leaf);
+        leaf.style.setProperty(
+          '--drift',
+          (
+            -55 +
+            Math.random() * 110
+          ).toFixed(0) + 'px'
+        );
+
+        const size =
+          10 +
+          Math.random() * 12;
+
+        leaf.style.width =
+          size + 'px';
+
+        leaf.style.height =
+          (size * 1.12) + 'px';
+
+        layer.appendChild(leaf);
+
       }
+
     }
 
-    function createRain(){
-      if(!photoFx) return;
-      clearPhotoFx();
-      addAtmosphere('rain-mist');
 
-      const travel = fxTravel(250);
+    function makeRain(layer){
 
-      for(let i = 0; i < 62; i++){
-        const drop = document.createElement('span');
-        const far = Math.random() < .42;
-        drop.className = 'fx-piece fx-rain' + (far ? ' far' : '');
+      clearFx(layer);
 
-        const duration = far
-          ? .88 + Math.random() * .55
-          : .60 + Math.random() * .42;
+      const count =
+        window.innerWidth <= 720
+          ? 28
+          : 54;
 
-        drop.style.left = (Math.random() * 100) + '%';
-        drop.style.setProperty('--travel', travel + 'px');
-        drop.style.setProperty('--duration', duration.toFixed(2) + 's');
-        drop.style.setProperty('--delay', (-(Math.random() * duration)).toFixed(2) + 's');
-        drop.style.setProperty('--opacity', far ? '.34' : '.68');
+      for(
+        let i = 0;
+        i < count;
+        i++
+      ){
 
-        photoFx.appendChild(drop);
+        const drop =
+          document.createElement('span');
+
+        drop.className =
+          'fx-rain';
+
+        drop.style.left =
+          (Math.random() * 100) + '%';
+
+        drop.style.setProperty(
+          '--dur',
+          (
+            .65 +
+            Math.random() * .55
+          ).toFixed(2) + 's'
+        );
+
+        drop.style.setProperty(
+          '--delay',
+          (
+            -Math.random() * 1.4
+          ).toFixed(2) + 's'
+        );
+
+        layer.appendChild(drop);
+
       }
+
     }
 
-    function createSnow(){
-      if(!photoFx) return;
-      clearPhotoFx();
-      addAtmosphere('snow-glow');
 
-      const travel = fxTravel(190);
+    function makeSnow(layer){
 
-      for(let i = 0; i < 48; i++){
-        const flake = document.createElement('span');
-        const depth = Math.random();
+      clearFx(layer);
+
+      const count =
+        window.innerWidth <= 720
+          ? 20
+          : 42;
+
+      for(
+        let i = 0;
+        i < count;
+        i++
+      ){
+
+        const flake =
+          document.createElement('span');
 
         flake.className =
-          'fx-piece fx-snow ' +
-          (depth > .78 ? 'near' : depth < .27 ? 'far' : '');
+          'fx-snow';
 
-        const size = 3 + depth * 10 + Math.random() * 3;
-        const duration = 5.8 + (1 - depth) * 7 + Math.random() * 2.5;
-        const drift = -70 + Math.random() * 140;
+        const size =
+          3 +
+          Math.random() * 8;
 
-        flake.style.left = (Math.random() * 100) + '%';
-        flake.style.setProperty('--size', size.toFixed(1) + 'px');
-        flake.style.setProperty('--travel', travel + 'px');
-        flake.style.setProperty('--drift', drift.toFixed(0) + 'px');
-        flake.style.setProperty('--duration', duration.toFixed(2) + 's');
-        flake.style.setProperty('--delay', (-(Math.random() * duration)).toFixed(2) + 's');
-        flake.style.setProperty('--opacity', (0.50 + depth * .47).toFixed(2));
+        flake.style.left =
+          (Math.random() * 100) + '%';
 
-        photoFx.appendChild(flake);
+        flake.style.setProperty(
+          '--size',
+          size.toFixed(1) + 'px'
+        );
+
+        flake.style.setProperty(
+          '--dur',
+          (
+            5.5 +
+            Math.random() * 7
+          ).toFixed(2) + 's'
+        );
+
+        flake.style.setProperty(
+          '--delay',
+          (
+            -Math.random() * 9
+          ).toFixed(2) + 's'
+        );
+
+        flake.style.setProperty(
+          '--drift',
+          (
+            -45 +
+            Math.random() * 90
+          ).toFixed(0) + 'px'
+        );
+
+        layer.appendChild(flake);
+
       }
+
     }
 
-    function updatePhotoFx(monthKey){
-      const visual = monthVisuals[monthKey];
-      if(!visual || !photoFx) return;
 
-      switch(visual.fx){
-        case 'september':
-          createLeaves('september');
-          break;
-        case 'october':
-          createLeaves('october');
-          break;
-        case 'november':
-          createRain();
-          break;
-        case 'winter':
-          createSnow();
-          break;
-        default:
-          clearPhotoFx();
-      }
+    function updateFx(type){
+
+      [
+        desktopFx,
+        mobileFx
+      ].forEach(layer => {
+
+        if(!layer){
+          return;
+        }
+
+        if(type === 'september'){
+
+          makeLeaves(
+            layer,
+            false
+          );
+
+        }
+
+        else if(type === 'october'){
+
+          makeLeaves(
+            layer,
+            true
+          );
+
+        }
+
+        else if(type === 'november'){
+
+          makeRain(layer);
+
+        }
+
+        else if(type === 'winter'){
+
+          makeSnow(layer);
+
+        }
+
+        else{
+
+          clearFx(layer);
+
+        }
+
+      });
+
     }
 
-    let activePhoto = 'A';
-    let activeMonth = '2026-08';
 
-    updatePhotoFx(activeMonth);
+    let activeMonth =
+      '2026-08';
+
 
     function setMonthVisual(monthKey){
-      const visual = monthVisuals[monthKey];
+
+      const visual =
+        monthVisuals[monthKey];
 
       if(!visual){
         return;
       }
 
-      if(monthKey === activeMonth){
-        monthLabel.textContent = visual.label;
-        updatePhotoFx(monthKey);
-        return;
-      }
+      activeMonth =
+        monthKey;
 
-      const incoming =
-        activePhoto === 'A'
-          ? photoB
-          : photoA;
+      [
+        desktopPhoto,
+        mobilePhoto
+      ].forEach(photo => {
 
-      const outgoing =
-        activePhoto === 'A'
-          ? photoA
-          : photoB;
+        if(!photo){
+          return;
+        }
 
-      let switched = false;
+        if(
+          photo.getAttribute('src') !==
+          visual.image
+        ){
 
-      const finishSwitch = () => {
-        if(switched) return;
-        switched = true;
+          photo.style.opacity =
+            '.25';
 
-        incoming.classList.add('active');
-        outgoing.classList.remove('active');
+          setTimeout(() => {
 
-        activePhoto =
-          activePhoto === 'A'
-            ? 'B'
-            : 'A';
+            photo.src =
+              visual.image;
 
-        activeMonth = monthKey;
-        updatePhotoFx(monthKey);
-      };
+            photo.style.opacity =
+              '1';
 
-      incoming.onload = finishSwitch;
-      incoming.src = visual.image;
+          },120);
 
-      if(incoming.complete){
-        finishSwitch();
-      }
+        }
 
-      monthLabel.textContent = visual.label;
-    }
-
-    window.addEventListener('message', event => {
-      const data = event.data;
-
-      // У Google Apps Script користувацька сторінка може працювати
-      // у вкладеному sandbox-iframe, тому event.source не завжди
-      // дорівнює calendarFrame.contentWindow.
-      // Приймаємо лише наш чіткий тип повідомлення та лише відомі місяці.
-      if(
-        data &&
-        data.type === 'calendar-month-changed' &&
-        typeof data.month === 'string' &&
-        monthVisuals[data.month]
-      ){
-        setMonthVisual(data.month);
-      }
-    });
-
-    // =====================================
-    // PREMIUM PARALLAX FOR MONTH LANDSCAPE
-    // =====================================
-    const hero = document.querySelector('.hero');
-    const glassSheen = document.querySelector('.glass-sheen');
-
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let scrollShift = 0;
-    let parallaxRaf = null;
-
-    function applyParallax(){
-      currentX += (targetX - currentX) * 0.10;
-      currentY += (targetY - currentY) * 0.10;
-
-      document
-        .querySelectorAll('.month-photo')
-        .forEach(photo => {
-          photo.style.setProperty(
-            '--parallax-x',
-            `${currentX.toFixed(2)}px`
-          );
-
-          photo.style.setProperty(
-            '--parallax-y',
-            `${currentY.toFixed(2)}px`
-          );
-
-          photo.style.setProperty(
-            '--scroll-y',
-            `${scrollShift.toFixed(2)}px`
-          );
-        });
-
-      if(glassSheen){
-        glassSheen.style.setProperty(
-          '--sheen-x',
-          `${(-currentX * .28).toFixed(2)}px`
-        );
-
-        glassSheen.style.setProperty(
-          '--sheen-y',
-          `${(-currentY * .22).toFixed(2)}px`
-        );
-      }
-
-      parallaxRaf = requestAnimationFrame(applyParallax);
-    }
-
-    if(
-      hero &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ){
-      hero.addEventListener('pointermove', event => {
-        const rect = hero.getBoundingClientRect();
-
-        const nx =
-          ((event.clientX - rect.left) / rect.width) - .5;
-
-        const ny =
-          ((event.clientY - rect.top) / rect.height) - .5;
-
-        targetX = nx * 24;
-        targetY = ny * 14;
       });
 
-      hero.addEventListener('pointerleave', () => {
-        targetX = 0;
-        targetY = 0;
-      });
-
-      window.addEventListener(
-        'scroll',
-        () => {
-          const rect = hero.getBoundingClientRect();
-          const progress = Math.max(
-            -1,
-            Math.min(
-              1,
-              -rect.top / Math.max(hero.offsetHeight,1)
-            )
-          );
-
-          scrollShift = progress * 10;
-        },
-        {passive:true}
+      setLabels(
+        visual.label
       );
 
-      applyParallax();
+      updateFx(
+        visual.fx
+      );
+
     }
 
+
+    window.addEventListener(
+      'message',
+      event => {
+
+        const data =
+          event.data;
+
+        if(
+          data &&
+          data.type ===
+            'calendar-month-changed' &&
+          typeof data.month ===
+            'string' &&
+          monthVisuals[data.month]
+        ){
+
+          setMonthVisual(
+            data.month
+          );
+
+        }
+
+      }
+    );
+
+
     const calendarViewport =
-      document.querySelector('.calendar-viewport');
+      document.querySelector(
+        '.calendar-viewport'
+      );
 
     const floatingWeek =
-      document.querySelector('.floating-week');
+      document.querySelector(
+        '.floating-week'
+      );
+
 
     if(
       calendarViewport &&
       floatingWeek
     ){
-      calendarViewport.addEventListener(
-        'scroll',
-        () => {
-          floatingWeek.classList.toggle(
-            'show',
-            calendarViewport.scrollTop > 70
-          );
-        }
-      );
+
+      calendarViewport
+        .addEventListener(
+          'scroll',
+          () => {
+
+            if(
+              window.innerWidth >
+              720
+            ){
+
+              floatingWeek
+                .classList
+                .toggle(
+                  'show',
+                  calendarViewport
+                    .scrollTop >
+                    70
+                );
+
+            }
+
+          }
+        );
+
     }
+
+
+    setMonthVisual(
+      activeMonth
+    );
+
   </script>
 
 </body>
